@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "593599695461",
+    "project_id": "sentri1",
+    "storage_bucket": "sentri1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593599695461:android:c082ef0c2f26d63c49d48c",
+        "android_client_info": {
+          "package_name": "com.example.registro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzoAjiotj-kiACRWy-rmIVPihQn5tgkxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

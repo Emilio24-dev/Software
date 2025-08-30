@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Registro</string>
+    <string name="app_nam">Sentriii</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_correo">Correo o Teléfono</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_confirm_password">Confirmar Contraseña</string>
+    <string name="btn_registrarse">Regístrate</string>
+    <string name="volver_login">Volver al Inicio de sesion</string>
+    <string name="volver_login1">Inicio de sesion</string>
+    <string name="sentri_logo_desc">Logo de Sentri</string>
+    <string name="hint_telefono">Teléfono</string>
+</resources>
