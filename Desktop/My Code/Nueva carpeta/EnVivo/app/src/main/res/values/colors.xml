@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sentri_bg">#0F1720</color>        <!-- fondo app -->
+    <color name="sentri_surface">#1E2A32</color>  <!-- tarjetas/botones -->
+    <color name="sentri_accent">#2F3E46</color>   <!-- acento -->
+    <!-- texto en oscuro -->
+    <color name="sentri_card_bg">#F6EAF3</color>     <!-- fondo rosado claro -->
+    <color name="sentri_card_stroke">#E31E80</color> <!-- borde fucsia -->
+    <color name="sentri_on_dark">#1E2A32</color>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">EnVivo</string>
+
+    <!-- Toolbar -->
+    <string name="title_home">Inicio</string>
+    <string name="menu_config">Config</string>
+
+    <!-- Botones -->
+    <string name="btn_live">En vivo</string>
+    <string name="btn_recordings">Grabaciones</string>
+    <string name="btn_alerts">Alertas</string>
+</resources>

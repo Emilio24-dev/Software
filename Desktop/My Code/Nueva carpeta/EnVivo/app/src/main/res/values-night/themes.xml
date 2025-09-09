@@ -1,0 +1,12 @@
+<resources>
+    <style name="Theme.EnVivo" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="colorPrimary">@color/sentri_bg</item>
+        <item name="colorSurface">@color/sentri_surface</item>
+        <item name="colorSecondary">@color/sentri_accent</item>
+        <item name="colorOnPrimary">@color/sentri_on_dark</item>
+        <item name="colorOnSurface">@color/sentri_on_dark</item>
+    </style>
+</resources>
