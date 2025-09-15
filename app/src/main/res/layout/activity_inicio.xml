@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212F3C"
+    android:foregroundTint="#FFFFFF"
+    android:fitsSystemWindows="true"
+    tools:context=".Inicio">
+
+
+    <ImageButton
+        android:id="@+id/btCam"
+        android:layout_width="391dp"
+        android:layout_height="187dp"
+        android:background="@drawable/cambtn"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181" />
+
+    <ImageButton
+        android:id="@+id/btRec"
+        android:layout_width="match_parent"
+        android:layout_height="211dp"
+        android:background="@drawable/nvrbtn"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569" />
+
+    <ImageButton
+        android:id="@+id/btNot"
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:background="@drawable/alertasbtn"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
+    <LinearLayout
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintTop_toTopOf="parent">
+    <ImageButton
+        android:id="@+id/itemPerfil"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/usuario"
+        android:background="@null"
+        android:scaleType="fitCenter"  />
+
+    <ImageButton
+        android:id="@+id/itemHome"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/casafinal"
+        android:background="@null"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/itemSetts"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ajusfinal"
+        android:background="@null"
+        android:scaleType="fitCenter" />
+
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menuBar" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

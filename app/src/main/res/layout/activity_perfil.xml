@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3B4549"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/btninicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#03A9F4"
+        android:text="&lt; inicio"
+        android:textColor="#00BCD4"
+        android:textColorLink="#00BCD4"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/perfil_user" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:cursorVisible="false"
+        android:enabled="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+
+    <!-- Botón para cambiar contraseña -->
+
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:enabled="false"
+        android:textColor="@android:color/white"
+        android:hint="Nombre" />
+
+    <EditText
+        android:id="@+id/etTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:enabled="false"
+        android:textColor="@android:color/white"
+        android:hint="Teléfono" />
+
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#DBD8E4"
+        android:text="Cambiar Contraseña"
+        android:textColor="@color/black" />
+
+    <!-- Botón para cerrar sesión (NUEVO) -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Cerrar Sesión"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>
