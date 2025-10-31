@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605623403051",
+    "project_id": "sentri-live-dani",
+    "storage_bucket": "sentri-live-dani.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605623403051:android:35c947179195375462e06e",
+        "android_client_info": {
+          "package_name": "com.example.registro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCt8SXBT1uukIyiKT5zU4TOmrZxYyWmzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#182534"
+    android:layout_marginBottom="6dp"
+    android:elevation="1dp"
+    android:clipToOutline="true">
+
+    <TextView
+        android:id="@+id/tvMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movimiento detectado"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CAM1 — 26/10/2025 20:01-20:05"
+        android:textColor="#B0BEC5"
+        android:textSize="13sp"
+        android:layout_marginTop="2dp" />
+</LinearLayout>

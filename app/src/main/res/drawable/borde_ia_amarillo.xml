@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo transparente -->
+    <solid android:color="@android:color/transparent" />
+
+    <!-- Borde amarillo estilo CCTV -->
+    <stroke
+        android:width="2dp"
+        android:color="#FFD93B" />
+
+    <!-- Esquinas ligeramente redondeadas -->
+    <corners android:radius="6dp" />
+</shape>
