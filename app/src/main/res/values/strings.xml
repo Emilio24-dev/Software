@@ -25,13 +25,9 @@
     <string name="youtube_channel_id">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
 
     <!-- res/values/strings.xml -->
-    <string name="youtube_live_url"
-        translatable="false"
-        formatted="false">
+    <string name="youtube_live_url" formatted="false" translatable="false">
     https://www.youtube.com/embed/3xUAyGMVB7Y?autoplay=1&amp;mute=1&amp;playsinline=1&amp;modestbranding=1
 </string>
-
-
 
 
     <string name="user_icon">Icono de usuario</string>

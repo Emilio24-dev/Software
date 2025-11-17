@@ -1,10 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettActivity">
+    android:background="@color/settings_bg"
+    android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <!-- ATRÁS -->
+        <TextView
+            android:id="@+id/tvBackConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="‹ Inicio"
+            android:textColor="#00B7FF"
+            android:textSize="18sp"
+            android:fontFamily="serif"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="8dp"
+            android:gravity="start" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTitleConfig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuración"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/settings_title_text"
+            android:paddingBottom="16dp" />
+
+        <!-- Botón Idioma -->
+        <Button
+            android:id="@+id/btnIdioma"
+            android:text="Idioma"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
+        <!-- Botón Tema -->
+        <!--<Button
+            android:id="@+id/btnTema"
+            android:text="Tema"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />-->
+
+        <!-- Botón Notificaciones -->
+        <Button
+            android:id="@+id/btnNotificaciones"
+            android:text="Notificaciones"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
+        <!-- Botón Soporte -->
+        <Button
+            android:id="@+id/btnSoporte"
+            android:text="Soporte"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
+        <!-- Botón Cerrar sesión -->
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:text="Cerrar sesión"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
+    </LinearLayout>
+</ScrollView>

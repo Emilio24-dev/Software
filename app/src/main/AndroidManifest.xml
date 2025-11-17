@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.registro">
-
     <!-- ===== PERMISOS ===== -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
-
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission
@@ -28,7 +21,6 @@
         tools:ignore="UnusedAttribute" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -37,50 +29,46 @@
         android:roundIcon="@mipmap/snowfox_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Registro"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <!-- Servicio foreground que usás para la "grabación" -->
+        <activity
+            android:name=".SoporteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IdiomaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificacionesActivity"
+            android:exported="false" />
+       <!-- <activity
+            android:name=".db.NotificacionesActivity"
+            android:exported="false" /> --> <!-- Servicio foreground que usás para la "grabación" -->
         <service
             android:name=".ScreenRecordService"
             android:exported="false"
-            android:foregroundServiceType="mediaProjection|microphone" />
-
-        <!-- ===== ACTIVITIES ===== -->
-
+            android:foregroundServiceType="mediaProjection|microphone" /> <!-- ===== ACTIVITIES ===== -->
         <!-- Live con las dos cams y el botón REC -->
         <activity
             android:name=".LiveActivity"
-            android:exported="true"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-
-        <!-- LISTA DE DÍAS con clips (ESTA ES LA QUE NO TE ABRÍA) -->
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true" /> <!-- LISTA DE DÍAS con clips (ESTA ES LA QUE NO TE ABRÍA) -->
         <activity
             android:name=".grabaciones"
-            android:exported="true" />
-
-        <!-- GRID de clips de una fecha -->
+            android:exported="true" /> <!-- GRID de clips de una fecha -->
         <activity
             android:name=".GrabacionesDetalleActivity"
-            android:exported="true" />
-
-        <!-- Reproductor individual -->
+            android:exported="true" /> <!-- Reproductor individual -->
         <activity
             android:name=".PlayerActivity"
-            android:exported="true" />
-
-        <!-- Fullscreen horizontal del player -->
+            android:exported="true" /> <!-- Fullscreen horizontal del player -->
         <activity
             android:name=".PlayerFullscreenActivity"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.Registro" />
-
-        <!-- Alertas -->
+            android:theme="@style/Theme.Registro" /> <!-- Alertas -->
         <activity
             android:name=".AlertasActivity"
-            android:exported="true" />
-
-        <!-- Perfil / ajustes / cuenta -->
+            android:exported="true" /> <!-- Perfil / ajustes / cuenta -->
         <activity
             android:name=".PerfilActivity"
             android:exported="false" />
@@ -98,28 +86,22 @@
             android:exported="false" />
         <activity
             android:name=".CasaActivity"
-            android:exported="false" />
-
-        <!-- Pantalla de registro de usuario -->
+            android:exported="false" /> <!-- Pantalla de registro de usuario -->
         <activity
             android:name=".registro"
-            android:exported="true" />
-
-        <!-- Pantalla Inicio de la app -->
+            android:exported="true" /> <!-- Pantalla Inicio de la app -->
         <activity
             android:name=".Inicio"
-            android:exported="false" />
-
-        <!-- Pantalla principal marcada como LAUNCHER -->
+            android:exported="false" /> <!-- Pantalla principal marcada como LAUNCHER -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

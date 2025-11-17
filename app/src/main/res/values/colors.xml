@@ -2,4 +2,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_500">#673AB7</color>
+    <color name="settings_bg">#1F2E38</color>              <!-- fondo pantalla -->
+    <color name="settings_title_text">#E8E4EE</color>      <!-- título "Configuración" -->
+    <color name="settings_button_bg">#E9DDE6</color>       <!-- fondo botón (lavanda) -->
+    <color name="settings_button_text">#2A2730</color>     <!-- texto botón -->
+    <color name="settings_button_stroke">#33000000</color><!-- borde sutil (20% negro) -->
+
+    <color name="switch_on_green">#25C02A</color>
+    <color name="switch_on_green_dark">#0E7C11</color>
+    <color name="switch_off_red">#C62828</color>
+    <color name="switch_off_red_dark">#861A1A</color>
+
 </resources>

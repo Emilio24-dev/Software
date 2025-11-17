@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/settings_bg"
+    android:padding="16dp">
+
+    <!-- Back -->
+    <TextView
+        android:id="@+id/tvBackSoporte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="‹ Configuracion"
+        android:textColor="#00B7FF"
+        android:textSize="18sp"
+        android:fontFamily="serif"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitleSoporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Soporte"
+        android:textColor="@color/settings_title_text"
+        android:textStyle="italic"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        android:fontFamily="serif" />
+
+    <!-- Fila 1: Reportar un problema -->
+    <LinearLayout
+        android:id="@+id/rowReportar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/fondo_fila_opcion"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reportar un problema"
+            android:textColor="@color/settings_button_text"
+            android:textSize="16sp"
+            android:fontFamily="serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#00B7FF"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <!-- Separador fino -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/settings_button_stroke" />
+
+    <!-- Fila 2: Servicio de ayuda -->
+    <LinearLayout
+        android:id="@+id/rowAyuda"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/fondo_fila_opcion"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Servicio de ayuda"
+            android:textColor="@color/settings_button_text"
+            android:textSize="16sp"
+            android:fontFamily="serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#00B7FF"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+</LinearLayout>

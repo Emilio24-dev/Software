@@ -25,6 +25,10 @@ class Inicio : AppCompatActivity() {
        val itemperfil: ImageButton = findViewById(R.id.itemPerfil)
         val itemhome: ImageButton = findViewById(R.id.itemHome)
         val itemsetts: ImageButton = findViewById(R.id.itemSetts)
+        itemsetts.setOnClickListener {
+            val intent = Intent(this, SettActivity::class.java)
+            startActivity(intent)
+        }
 
         // 🔹 Configuración de botones principales
         val camButton: ImageButton = findViewById(R.id.btCam)

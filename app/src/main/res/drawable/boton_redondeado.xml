@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Borde redondeado -->
+    <corners android:radius="30dp" />
+
+    <!-- Color de fondo -->
+    <solid android:color="#ECE4F0" />
+
+    <!-- Borde sutil -->
+    <stroke
+        android:width="1dp"
+        android:color="#33000000" />
+
+    <!-- Espaciado interno -->
+    <padding
+        android:left="18dp"
+        android:top="12dp"
+        android:right="18dp"
+        android:bottom="12dp" />
+
+    <!-- Fondo de la fila -->
+    <solid android:color="@color/settings_button_bg"/>
+
+    <!-- Línea/borde sutil -->
+    <stroke android:width="1dp" android:color="@color/settings_button_stroke"/>
+
+</shape>
