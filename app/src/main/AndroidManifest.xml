@@ -32,6 +32,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ServicioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportesActivity"
+            android:exported="false" />
+        <activity
             android:name=".SoporteActivity"
             android:exported="false" />
         <activity
@@ -40,9 +46,12 @@
         <activity
             android:name=".NotificacionesActivity"
             android:exported="false" />
-       <!-- <activity
+        <!--
+ <activity
             android:name=".db.NotificacionesActivity"
-            android:exported="false" /> --> <!-- Servicio foreground que usás para la "grabación" -->
+            android:exported="false" />
+        -->
+        <!-- Servicio foreground que usás para la "grabación" -->
         <service
             android:name=".ScreenRecordService"
             android:exported="false"
