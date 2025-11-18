@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#182430"
     android:orientation="vertical"
     android:padding="24dp">
@@ -53,7 +54,8 @@
         android:layout_gravity="end"
         android:layout_marginTop="16dp"
         android:text="Enviar"
-        android:background="#F6DDF4"
-        android:textColor="@color/settings_button_text" />
+        android:background="@drawable/boton_blanco_cuadrado"
+        app:backgroundTint="@null"
+        android:textColor="#000000" />
 
 </LinearLayout>
