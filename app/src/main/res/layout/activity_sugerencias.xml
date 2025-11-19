@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#182430"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+
+    <TextView
+        android:id="@+id/tvBackSuger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt; Sugerencias"
+        android:fontFamily="serif"
+        android:textSize="18sp"
+        android:textColor="#31B7FF" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="Escribe una sugerencia"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+
+
+
+    <!-- Campo para la descripción -->
+    <EditText
+        android:id="@+id/etDescripcionSugerencia"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:background="#283549"
+        android:padding="12dp"
+        android:hint="¿Que te gustaria que se agregara?"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B0B0B0"
+        android:inputType="textMultiLine"
+        android:gravity="top|start" />
+
+    <!-- Botón Enviar -->
+    <Button
+        android:id="@+id/btnEnviarSoporte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:text="Enviar"
+        android:background="@drawable/boton_blanco_cuadrado"
+        app:backgroundTint="@null"
+        android:textColor="#000000" />
+
+</LinearLayout>
