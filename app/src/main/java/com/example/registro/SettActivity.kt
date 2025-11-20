@@ -44,6 +44,10 @@ class SettActivity : AppCompatActivity() {
         }
         // ===== fin soporte =====
 
+        findViewById<Button>(R.id.btnSugerencias)?.setOnClickListener {
+            startActivity(Intent(this, SugerenciasActivity::class.java))
+        }
+
         // Notificaciones (si la tienes)
         findViewById<Button>(R.id.btnNotificaciones)?.setOnClickListener {
             startActivity(Intent(this, NotificacionesActivity::class.java))
@@ -52,6 +56,8 @@ class SettActivity : AppCompatActivity() {
         // Tema / Cerrar sesión (pendiente)
         //findViewById<Button>(R.id.btnTema)?.setOnClickListener { /* TODO */ }
         findViewById<Button>(R.id.btnCerrarSesion)?.setOnClickListener { /* TODO */ }
+
+
 
         // Insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

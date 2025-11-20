@@ -7,23 +7,23 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-
+    <!-- BOTÓN INICIO -->
     <TextView
         android:id="@+id/btninicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#03A9F4"
         android:text="&lt; inicio"
         android:textColor="#00BCD4"
-        android:textColorLink="#00BCD4"
         android:textSize="20sp" />
 
+    <!-- FOTO DE PERFIL -->
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/perfil_user" />
 
+    <!-- EMAIL (solo lectura) -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
@@ -38,10 +38,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-
-    <!-- Botón para cambiar contraseña -->
-
-
+    <!-- NOMBRE -->
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="match_parent"
@@ -51,6 +48,7 @@
         android:textColor="@android:color/white"
         android:hint="Nombre" />
 
+    <!-- TELÉFONO -->
     <EditText
         android:id="@+id/etTelefono"
         android:layout_width="match_parent"
@@ -60,23 +58,44 @@
         android:textColor="@android:color/white"
         android:hint="Teléfono" />
 
+    <!-- BOTÓN EDITAR -->
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#DBD8E4"
+        android:text="Editar datos"
+        android:textColor="@color/black" />
+
+    <!-- BOTÓN GUARDAR -->
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#DBD8E4"
+        android:text="Guardar cambios"
+        android:textColor="@color/black" />
+
+    <!-- CAMBIAR CONTRASEÑA -->
     <Button
         android:id="@+id/btnChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#DBD8E4"
         android:text="Cambiar Contraseña"
         android:textColor="@color/black" />
 
-    <!-- Botón para cerrar sesión (NUEVO) -->
+    <!-- CERRAR SESIÓN -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@android:color/holo_red_dark"
         android:text="Cerrar Sesión"
         android:textColor="@android:color/white" />
-
 
 </LinearLayout>

@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.registro"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.registro"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -69,10 +69,11 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
 // En vivo (ExoPlayer / Media3)
-    implementation("androidx.media3:media3-exoplayer:1.4.1")
-    implementation("androidx.media3:media3-ui:1.4.1")
+    implementation("androidx.media3:media3-exoplayer:1.5.1")
+    implementation("androidx.media3:media3-ui:1.5.1")
+    implementation("androidx.media3:media3-exoplayer-rtsp:1.5.1")
 // opcional si algún día reproduces RTSP:
-    implementation("androidx.media3:media3-exoplayer-rtsp:1.4.1")
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
