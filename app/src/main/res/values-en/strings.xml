@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Sentri</string>
+
+    <!-- Language screen -->
+    <string name="settings_back">‹ Settings</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_subtitle">Language list</string>
+    <string name="language_spanish_sv">Spanish (El Salvador)</string>
+    <string name="language_english_us">English (United States)</string>
+    <string name="language_changed_restart">Language updated. Restarting Sentri…</string>
+
+    <!--- Registro -->
+
+    <string name="hint_nombre">Name</string>
+    <string name="hint_correo">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_registrarse">Sign up</string>
+    <string name="volver_login">Back to login</string>
+    <string name="volver_login1">Login</string>
+    <string name="hint_telefono">Phone</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="btninicio">Back to home</string>
+
+   <!-- Grabación -->
+    <string name="record_start">● RECORD</string>
+    <string name="record_stop">■ STOP</string>
+    <string name="recording_now">Recording…</string>
+    <string name="saved_to_movies">Recording saved in Movies/Sentri</string>
+    <string name="capture_cancelled">Capture cancelled</string>
+    <string name="capture_error" >The capture cannot be started</string>
+    <string name="Recordings">Recordings</string>
+
+   <!-- Sett screen -->
+
+    <string name="start_back">‹ Home</string>
+    <string name="settings_title">Settings</string>
+    <string name="language_text">Language</string>
+    <string name="notifications">Notificactions</string>
+    <string name="Suggestions">Suggestions</string>
+    <string name="support">Support</string>
+    <string name="settings_logout">Log out</string>
+
+    <!-- En vivo -->
+
+    <string name="live_title">Live</string>
+
+    <!-- Login -->
+
+    <string name="mail_text">Mail</string>
+    <string name="Write_mail">Email</string>
+    <string name="password">Password</string>
+    <string name="Started_session">Stay logged in</string>
+    <string name="Started">Start</string>
+    <string name="Forgett">Forgot your password</string>
+    <string name="NoAcc">Don´t have an account?</string>
+    <string name="Register"> Regíster</string>
+
+    <!-- Alertas -->
+
+    <string name="Home">◀ Home</string>
+    <string name="Alerts">❗ Alerts</string>
+
+    <!-- Perfil -->
+
+    <string name="Home_prof">&lt; Home</string>
+    <string name="Change">Change password</string>
+    <string name="Prof_name">Name</string>
+    <string name="Prof_phone">Phone</string>
+
+    <!-- Notificaciones -->
+
+    <string name="Alerts_noti">Alerts</string>
+    <string name="Push">Push notifications</string>
+
+    <!-- Sugerencias -->
+
+    <string name="Suggest_back">&lt; Suggestions</string>
+    <string name="SuggestWrite">Write a suggestion</string>
+    <string name="SuggestAdd">What would you like to see added?</string>
+    <string name="SendSuggest">Send</string>
+
+    <!-- Soporte -->
+
+    <string name="Problem_write">Report a problem</string>
+    <string name="Service">Help Desk</string>
+
+    <!-- Recuperar contraseña -->
+
+    <string name="textViewResetTitle">Recover password</string>
+    <string name="Enter_email">Enter your email</string>
+    <string name="Send_link">Send link</string>
+    <string name="Ret_Login">Return to login</string>
+
+    <!-- Player -->
+
+    <string name="Detect">Detected person</string>
+
+    <!-- Cambio de contra -->
+
+    <string name="profile_back">&lt; profile</string>
+    <string name="current_pass">Current password</string>
+    <string name="New_pass">New password</string>
+    <string name="Update">Update password</string>
+
+    <!-- Cambiar correo -->
+
+    <string name="New_email">New email</string>
+    <string name="Save_email">Save new email</string>
+
+    <!-- Reportes -->
+
+    <string name="BackSupport">&lt; Support</string>
+    <string name="ReportTitle">Report problem</string>
+    <string name="ReportDesc">Briefly explain what the problem is.</string>
+    <string name="SendBtn">Send</string>
+
+
+    <!-- Servicio de ayuda -->
+
+    <string name="Contact">Contact us</string>
+
+
+</resources>

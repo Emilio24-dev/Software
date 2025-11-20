@@ -30,6 +30,12 @@ import java.util.TimeZone
 
 class LiveActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
     private var isRecording = false
     private var camSeleccionada = 1
 

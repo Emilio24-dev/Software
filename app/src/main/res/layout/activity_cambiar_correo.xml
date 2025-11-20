@@ -9,13 +9,13 @@
         android:id="@+id/etNuevoCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nuevo correo"
+        android:hint="@string/New_email"
         android:inputType="textEmailAddress"/>
 
     <Button
         android:id="@+id/btnGuardarCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar nuevo correo"
+        android:text="@string/Save_email"
         android:layout_marginTop="12dp"/>
 </LinearLayout>

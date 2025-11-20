@@ -12,7 +12,7 @@
         android:id="@+id/tvBackReportar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt; Soporte"
+        android:text="@string/BackSupport"
         android:fontFamily="serif"
         android:textSize="18sp"
         android:textColor="#31B7FF" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:text="Reportar problema"
+        android:text="@string/ReportTitle"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF" />
@@ -40,7 +40,7 @@
         android:layout_weight="1"
         android:background="#283549"
         android:padding="12dp"
-        android:hint="Explica brevemente cuál es el problema."
+        android:hint="@string/ReportDesc"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
         android:inputType="textMultiLine"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="16dp"
-        android:text="Enviar"
+        android:text="@string/SendBtn"
         android:background="@drawable/boton_blanco_cuadrado"
         app:backgroundTint="@null"
         android:textColor="#000000" />

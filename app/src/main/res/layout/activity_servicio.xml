@@ -11,7 +11,7 @@
         android:id="@+id/tvBackAyuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt; Soporte"
+        android:text="@string/BackSupport"
         android:textSize="16sp"
         android:textColor="#31B7FF" />
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Servicio de ayuda"
+        android:text="@string/Service"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF" />
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Contáctanos"
+        android:text="@string/Contact"
         android:background="@drawable/boton_blanco_cuadrado"
         app:backgroundTint="@null"
         android:textColor="#000000" />
