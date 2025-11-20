@@ -78,6 +78,13 @@ class ReportesActivity : AppCompatActivity() {
                 if (intentSend.resolveActivity(pm) != null) {
                     startActivity(Intent.createChooser(intentSend, "Enviar reporte con..."))
                     etDescripcion.text?.clear()
+
+                    Toast.makeText(
+                        this,
+                        "Tu reporte ha sido preparado y enviado al correo.",
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 } else {
                     Toast.makeText(
                         this,
