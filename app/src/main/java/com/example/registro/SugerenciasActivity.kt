@@ -69,6 +69,14 @@ class SugerenciasActivity : AppCompatActivity() {
             if (emailIntent.resolveActivity(pm) != null) {
                 startActivity(Intent.createChooser(emailIntent, "Selecciona tu app de correo"))
                 etDescripcion.text?.clear()
+
+                Toast.makeText(
+                    this,
+                    "Tu sugerencia ha sido preparada y enviada al correo.",
+                    Toast.LENGTH_LONG
+                ).show()
+
+
             } else {
                 Toast.makeText(
                     this,
