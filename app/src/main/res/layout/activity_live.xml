@@ -1,574 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootLive"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0F1318">
+    android:background="#061C2A">
 
-    <!-- BARRA ARRIBA -->
+    <!-- BARRA SUPERIOR: botón Inicio -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#1A1F27"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
         <TextView
-            android:id="@+id/btnBackHome"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="←"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:background="#333333"
-            android:padding="4dp"
-            android:layout_marginEnd="12dp"
-            android:clickable="true"
-            android:focusable="true" />
-
-        <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/btnBackInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="En vivo"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:text="← Inicio"
+            android:textColor="#00BCD4"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- ZONA SCROLL CON LAS CÁMARAS -->
+    <!-- TÍTULO: En vivo + agregar cámara -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="#FF1744"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="En vivo"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnAgregarCamara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar cámara" />
+    </LinearLayout>
+
+    <!-- LISTA SCROLLEABLE DE CAMARAS -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/containerCamaras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp">
-
-            <!-- CARD CAM 1 -->
-            <LinearLayout
-                android:id="@+id/cardCam1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_cam_card_selector"
-                android:padding="12dp">
-
-                <!-- header cam1 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tvCam1Label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="CAM 1"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvClockCam1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2025-10-27 03:18:57"
-                        android:textColor="#CCCCCC"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <!-- marco cámara 1 -->
-                <FrameLayout
-                    android:id="@+id/camFrame1"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/borde_blanco">
-
-                    <!-- video cam1 -->
-                    <androidx.media3.ui.PlayerView
-                        android:id="@+id/videoCam1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#000000"
-                        app:use_controller="false" />
-
-                    <!-- overlay IA de cam1 -->
-                    <FrameLayout
-                        android:id="@+id/overlayIA1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
-                        <!-- EVENTO MORNING CAM1 -->
-                        <!-- C0309: perro a los 8s, 5s -->
-                        <TextView
-                            android:id="@+id/iaCam1_c0309_perro"
-                            android:layout_width="110dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="PERRO DETECTADO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <!-- C0311: dos vehículos (izq / der) a los 4s por 10s, tiemblan -->
-                        <TextView
-                            android:id="@+id/iaCam1_c0311_carLeft"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="bottom|start"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginBottom="24dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam1_c0311_carRight"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="24dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <!-- C0311: perros a los 23s por 6s -->
-                        <TextView
-                            android:id="@+id/iaCam1_c0311_perrosLate"
-                            android:layout_width="110dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center_horizontal|top"
-                            android:layout_marginTop="24dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="ANIMALES DETECTADOS"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <!-- EVENTO NOCHE CAM1 -->
-                        <!-- C0337: 4 vehículos a los 3s por 7s -->
-                        <TextView
-                            android:id="@+id/iaCam1_c0337_carA"
-                            android:layout_width="70dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="top|start"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam1_c0337_carB"
-                            android:layout_width="70dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="top|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam1_c0337_carC"
-                            android:layout_width="70dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom|start"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginBottom="12dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam1_c0337_carD"
-                            android:layout_width="70dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="12dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <!-- C0321: vehículo centro a los 2s por 5s -->
-                        <TextView
-                            android:id="@+id/iaCam1_c0321_vehicleCenter"
-                            android:layout_width="110dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="VEHÍCULO DETECTADO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-                    </FrameLayout>
-
-                </FrameLayout>
-
-                <!-- controles cam1 -->
-                <LinearLayout
-                    android:id="@+id/controlsCam1"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:background="#000000">
-
-                    <TextView
-                        android:id="@+id/btnBack1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⏮"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnReload1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⟳"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnPlayPause1"
-                        android:layout_width="48dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="▶"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:background="#B8860B" />
-
-                    <TextView
-                        android:id="@+id/btnMute1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="🔇"
-                        android:textColor="#CCCCCC"
-                        android:textSize="18sp"/>
-
-                    <TextView
-                        android:id="@+id/btnReloadRight1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⟳"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnForward1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⏭"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- separador visual -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:background="#00000000"/>
-
-            <!-- CARD CAM 2 -->
-            <LinearLayout
-                android:id="@+id/cardCam2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_cam_card_selector"
-                android:padding="12dp">
-
-                <!-- header cam2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tvCam2Label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="CAM 2"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvClockCam2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2025-10-27 03:18:57"
-                        android:textColor="#CCCCCC"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <!-- marco cámara 2 -->
-                <FrameLayout
-                    android:id="@+id/camFrame2"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/borde_blanco">
-
-                    <!-- video cam2 -->
-                    <androidx.media3.ui.PlayerView
-                        android:id="@+id/videoCam2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#000000"
-                        app:use_controller="false" />
-
-                    <!-- overlay IA de cam2 -->
-                    <FrameLayout
-                        android:id="@+id/overlayIA2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
-                        <!-- MORNING CAM2 (C0318): sombrilla + pájaro rápido + árbol; 4s, dura 3s -->
-                        <TextView
-                            android:id="@+id/iaCam2_c0318_sombrilla"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="bottom|start"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginBottom="24dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="MOVIMIENTO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam2_c0318_pajaro"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_horizontal|bottom"
-                            android:layout_marginBottom="24dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="OBJETO RÁPIDO"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/iaCam2_c0318_arbol"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="top|center_horizontal"
-                            android:layout_marginTop="16dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="ZONA ÁRBOL"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
-                            android:padding="3dp"
-                            android:visibility="gone" />
-
-                        <!-- NOCHE CAM2 -->
-                        <!-- C0333: niña en silla, 1s, dura 6s -->
-                        <TextView
-                            android:id="@+id/iaCam2_c0333_ninaSilla"
-                            android:layout_width="110dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="top|end"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginTop="16dp"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="PERSONA SENTADA"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-
-                        <!-- C0325: cuadro único 2s, dura 4s -->
-                        <TextView
-                            android:id="@+id/iaCam2_c0325_alertaUnica"
-                            android:layout_width="110dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:background="@drawable/borde_ia_amarillo"
-                            android:text="DETECCIÓN"
-                            android:textColor="#FFD93B"
-                            android:textStyle="bold"
-                            android:textSize="10sp"
-                            android:padding="4dp"
-                            android:visibility="gone" />
-                    </FrameLayout>
-
-                </FrameLayout>
-
-                <!-- controles cam2 -->
-                <LinearLayout
-                    android:id="@+id/controlsCam2"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:background="#000000">
-
-                    <TextView
-                        android:id="@+id/btnBack2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⏮"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnReload2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⟳"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnPlayPause2"
-                        android:layout_width="48dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="▶"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:background="#B8860B" />
-
-                    <TextView
-                        android:id="@+id/btnMute2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="🔇"
-                        android:textColor="#CCCCCC"
-                        android:textSize="18sp"/>
-
-                    <TextView
-                        android:id="@+id/btnReloadRight2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⟳"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-
-                    <TextView
-                        android:id="@+id/btnForward2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="⏭"
-                        android:textColor="#CCCCCC"
-                        android:textSize="20sp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="#00000000"/>
-        </LinearLayout>
+            android:padding="8dp" />
     </ScrollView>
 
-    <!-- BARRA INFERIOR CON REC -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="#1A1A1A"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/btnRec"
-            android:layout_width="96dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="REC"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:background="#8A1E1E"
-            android:padding="8dp"/>
-    </LinearLayout>
-
 </LinearLayout>
-
