@@ -44,7 +44,10 @@
 
     <!-- En vivo -->
 
-    <string name="live_title">Live</string>
+
+    <string name="HomeBack">← Home</string>
+    <string name="Live">Live</string>
+    <string name="CamBtn">Add camera</string>
 
     <!-- Login -->
 
@@ -68,6 +71,8 @@
     <string name="Change">Change password</string>
     <string name="Prof_name">Name</string>
     <string name="Prof_phone">Phone</string>
+    <string name="EditName">Edit data</string>
+    <string name="SaveChanges">Save changes</string>
 
     <!-- Notificaciones -->
 
