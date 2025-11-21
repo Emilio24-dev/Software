@@ -76,8 +76,14 @@ class registro : AppCompatActivity() {
                                         .setValue(user)
                                         .addOnSuccessListener {
                                             Log.d(TAG, "Usuario creado con ID: $userId y datos guardados")
-                                            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                                            startActivity(Intent(this, MainActivity::class.java))
+                                            // ✅ Mensaje de éxito
+                                            showToast("Registro exitoso")
+
+                                            // ✅ Ir a la pantalla de Inicio
+                                            val intent = Intent(this, Inicio::class.java).apply {
+                                                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                            }
+                                            startActivity(intent)
                                             finish()
                                         }
                                         .addOnFailureListener {
