@@ -89,7 +89,9 @@
     <!-- Soporte -->
 
     <string name="Problem_write">Report a problem</string>
-    <string name="Service">Help Desk</string>
+    <string name="Service">Queries</string>
+    <string name="Queries">Consultation service</string>
+
 
     <!-- Recuperar contraseña -->
 
@@ -122,9 +124,10 @@
     <string name="SendBtn">Send</string>
 
 
-    <!-- Servicio de ayuda -->
+    <!-- Consultas -->
 
     <string name="Contact">Contact us</string>
+    <string name="Consultar">How can we help you?</string>
 
 
 </resources>

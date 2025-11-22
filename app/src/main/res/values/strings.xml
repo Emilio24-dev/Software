@@ -96,7 +96,9 @@
     <!-- Soporte -->
 
     <string name="Problem_write">Reportar un problema</string>
-    <string name="Service">Servicio de ayuda</string>
+    <string name="Service">Consultas</string>
+    <string name="Queries">Servicio de consultas</string>
+
 
     <!-- Recuperar contraseña -->
 
@@ -128,9 +130,10 @@
     <string name="ReportDesc">Explica brevemente cuál es el problema.</string>
     <string name="SendBtn">Enviar</string>
 
-    <!-- Servicio de ayuda -->
+    <!-- Consultas -->
 
     <string name="Contact">Contactanos</string>
+    <string name="Consultar">¿En qué podemos ayudarte?</string>
 
 
     <string name="user_icon" translatable="false">Icono de usuario</string>
