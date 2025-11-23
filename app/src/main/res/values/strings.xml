@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Registro</string>
-    <string name="app_nam">Sentriii</string>
+    <string name="app_nam" translatable="false">Sentriii</string>
     <string name="hint_nombre">Nombre</string>
     <string name="hint_correo">Correo electronico</string>
     <string name="hint_password">Contraseña</string>
     <string name="hint_confirm_password">Confirmar Contraseña</string>
     <string name="btn_registrarse">Regístrate</string>
     <string name="volver_login">Volver al Inicio de sesion</string>
-    <string name="volver_login1">Inicio de sesion</string>
-    <string name="sentri_logo_desc">Logo de Sentri</string>
-    <string name="hint_telefono">Teléfono</string>
-    <string name="btninicio">Volver al home</string>
+    <string name="volver_login1" >Inicio de sesion</string>
+    <string name="sentri_logo_desc" translatable="false">Logo de Sentri</string>
+    <string name="hint_telefono" >Teléfono</string>
+    <string name="btninicio" >Volver al home</string>
 
 
     <!-- Grabación -->
@@ -19,10 +19,11 @@
     <string name="recording_now">Grabando…</string>
     <string name="saved_to_movies">Grabación guardada en Movies/Sentri</string>
     <string name="capture_cancelled">Captura cancelada</string>
-    <string name="capture_error">No se puede iniciar la captura</string>
+    <string name="capture_error" >No se puede iniciar la captura</string>
+    <string name="Recordings">Grabaciones</string>
 
-    <string name="volver">Volver</string>
-    <string name="youtube_channel_id">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
+    <string name="volver" translatable="false">Volver</string>
+    <string name="youtube_channel_id" translatable="false">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
 
     <!-- res/values/strings.xml -->
     <string name="youtube_live_url" formatted="false" translatable="false">
@@ -43,6 +44,111 @@
     <string name="nvr_cam_edit">Editar cámara</string>
     <string name="nvr_cam_delete">Eliminar cámara</string>
 
+    <!-- Pantalla de idioma -->
+    <string name="settings_back">‹ Configuración</string>
+    <string name="settings_language_title">Idioma</string>
+    <string name="settings_language_subtitle">Lista de idiomas</string>
+    <string name="language_spanish_sv">Español (El Salvador)</string>
+    <string name="language_english_us">Inglés (Estados Unidos)</string>
+    <string name="language_changed_restart">Idioma actualizado. Reiniciando Sentri…</string>
 
-    <string name="user_icon">Icono de usuario</string>
+    <!-- Pantalla de sett -->
+
+    <string name="start_back">‹ Inicio</string>
+    <string name="settings_title">Configuracion</string>
+    <string name="language_text">Idioma</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="Suggestions">Sugerencias</string>
+    <string name="support">Soporte</string>
+    <string name="settings_logout">Cerrar sesión</string>
+
+   <!-- En vivo -->
+
+
+    <string name="HomeBack">← Inicio</string>
+    <string name="Live">En vivo</string>
+    <string name="CamBtn">Agregar cámara</string>
+
+
+    <!-- Login -->
+<string name="mail_text">Correo</string>
+<string name="Write_mail">Correo electrónico</string>
+<string name="password">Contraseña</string>
+<string name="Started_session">Mantener sesión iniciada</string>
+<string name="Started">Iniciar</string>
+<string name="Forgett">¿Olvidaste tu contraseña?</string>
+<string name="NoAcc">¿No tienes cuenta?</string>
+<string name="Register"> Regístrate</string>
+
+    <!-- Alertas -->
+
+<string name="Home">◀ Inicio</string>
+<string name="Alerts">❗ Alertas</string>
+
+    <!-- Perfil -->
+
+    <string name="Home_prof">&lt; inicio</string>
+    <string name="Change">Cambiar Contraseña</string>
+    <string name="Prof_name">Nombre</string>
+    <string name="Prof_phone">Telefono</string>
+    <string name="EditName">Editar datos</string>
+    <string name="SaveChanges">Guardar cambios</string>
+
+
+    <!-- Notificaciones -->
+
+    <string name="Alerts_noti">Alertas</string>
+    <string name="Push">Notificaciones Push</string>
+
+    <!-- Sugerencias -->
+
+    <string name="Suggest_back">&lt; Sugerencias</string>
+    <string name="SuggestWrite">Escribe una sugerencia"</string>
+    <string name="SuggestAdd">¿Que te gustaria que se agregara?</string>
+    <string name="SendSuggest">Enviar</string>
+
+    <!-- Soporte -->
+
+    <string name="Problem_write">Reportar un problema</string>
+    <string name="Service">Consultas</string>
+    <string name="Queries">Servicio de consultas</string>
+
+
+    <!-- Recuperar contraseña -->
+
+    <string name="textViewResetTitle">Recuperar contraseña</string>
+    <string name="Enter_email">Ingresa tu correo</string>
+    <string name="Send_link">Enviar enlace</string>
+    <string name="Ret_Login">Volver al inicio de sesión</string>
+
+    <!-- Player -->
+
+    <string name="Detect">Persona detectada</string>
+
+    <!-- Cambio de contra -->
+
+    <string name="profile_back">&lt; perfil</string>
+    <string name="current_pass">Contraseña actual</string>
+    <string name="New_pass">Nueva contraseña</string>
+    <string name="Update">Actualizar contraseña</string>
+
+    <!-- Cambiar correo -->
+
+    <string name="New_email">Nuevo correo</string>
+    <string name="Save_email">Guardar nuevo correo</string>
+
+    <!-- Reportes -->
+
+    <string name="BackSupport">&lt; Soporte</string>
+    <string name="ReportTitle">Reportar problema</string>
+    <string name="ReportDesc">Explica brevemente cuál es el problema.</string>
+    <string name="SendBtn">Enviar</string>
+
+    <!-- Consultas -->
+
+    <string name="Contact">Contactanos</string>
+    <string name="Consultar">¿En qué podemos ayudarte?</string>
+
+
+    <string name="user_icon" translatable="false">Icono de usuario</string>
 </resources>

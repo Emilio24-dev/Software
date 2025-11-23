@@ -11,7 +11,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cambiar Contraseña"
+        android:text="@string/Change"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:backgroundTint="#FFFEFE"
-        android:hint="Contraseña actual"
+        android:hint="@string/current_pass"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="#FAFAFA"
-        android:hint="Nueva contraseña"
+        android:hint="@string/New_pass"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="#DBD8E4"
-        android:text="Actualizar contraseña"
+        android:text="@string/Update"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +64,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#03A9F4"
-        android:text="&lt; perfil"
+        android:text="@string/profile_back"
         android:textColor="#00BCD4"
         android:textColorLink="#00BCD4"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

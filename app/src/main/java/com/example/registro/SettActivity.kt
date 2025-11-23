@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,14 @@ import androidx.core.view.WindowInsetsCompat
 import kotlin.jvm.java
 
 class SettActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

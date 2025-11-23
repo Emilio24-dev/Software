@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class ReportesActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     private val correoSoporte = "sentrifox2025@gmail.com"
 

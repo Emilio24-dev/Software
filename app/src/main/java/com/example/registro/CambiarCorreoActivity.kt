@@ -1,6 +1,7 @@
 package com.example.registro
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import android.view.MenuItem
@@ -14,6 +15,12 @@ import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 
 class CambiarCorreoActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     private lateinit var auth: FirebaseAuth
     private lateinit var etNuevoCorreo: EditText

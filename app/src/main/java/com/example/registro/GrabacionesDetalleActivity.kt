@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 
 class GrabacionesDetalleActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     private lateinit var fechaSeleccionada: String
     private var nvrId: String? = null

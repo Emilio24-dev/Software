@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class registro : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     private lateinit var auth: FirebaseAuth
     private val TAG = "RegistroActivity"

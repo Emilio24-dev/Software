@@ -17,7 +17,7 @@
             android:id="@+id/btnBackInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="← Inicio"
+            android:text="@string/HomeBack"
             android:textColor="#00BCD4"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="En vivo"
+            android:text="@string/Live"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
             android:id="@+id/btnAgregarCamara"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Agregar cámara" />
+            android:text="@string/CamBtn" />
     </LinearLayout>
 
     <!-- LISTA SCROLLEABLE DE CAMARAS -->

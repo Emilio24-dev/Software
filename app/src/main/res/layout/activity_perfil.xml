@@ -12,7 +12,7 @@
         android:id="@+id/btninicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="&lt; inicio"
+        android:text="@string/Home_prof"
         android:textColor="#00BCD4"
         android:textSize="20sp" />
 
@@ -46,7 +46,7 @@
         android:backgroundTint="#FFFFFF"
         android:enabled="false"
         android:textColor="@android:color/white"
-        android:hint="Nombre" />
+        android:hint="@string/hint_nombre" />
 
     <!-- TELÉFONO -->
     <EditText
@@ -56,7 +56,7 @@
         android:backgroundTint="#FFFFFF"
         android:enabled="false"
         android:textColor="@android:color/white"
-        android:hint="Teléfono" />
+        android:hint="@string/hint_telefono" />
 
     <!-- BOTÓN EDITAR -->
     <Button
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:backgroundTint="#DBD8E4"
-        android:text="Editar datos"
+        android:text="@string/EditName"
         android:textColor="@color/black" />
 
     <!-- BOTÓN GUARDAR -->
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:backgroundTint="#DBD8E4"
-        android:text="Guardar cambios"
+        android:text="@string/SaveChanges"
         android:textColor="@color/black" />
 
     <!-- CAMBIAR CONTRASEÑA -->
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#DBD8E4"
-        android:text="Cambiar Contraseña"
+        android:text="@string/Change"
         android:textColor="@color/black" />
 
     <!-- CERRAR SESIÓN -->
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="Cerrar Sesión"
+        android:text="@string/settings_logout"
         android:textColor="@android:color/white" />
 
 </LinearLayout>
