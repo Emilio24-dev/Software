@@ -8,69 +8,97 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 class PlayerActivity : AppCompatActivity() {
 
-    private lateinit var pv: PlayerView
     private var player: ExoPlayer? = null
+    private lateinit var playerView: PlayerView
 
-    // opcional UI extra para mostrar IA y fecha
-    private var tvTagIA: TextView? = null
-    private var tvFecha: TextView? = null
+    private var playlist: ArrayList<String>? = null
+    private var label: String? = null
+    private var nvrId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
 
-        pv = findViewById(R.id.playerView)
-        tvTagIA = findViewById(R.id.tvTagIA)
-        tvFecha = findViewById(R.id.tvFechaIA)
+        playerView = findViewById(R.id.playerView)
+
+        val tvFecha = findViewById<TextView>(R.id.tvFechaGrabacion)
+        val tvCam = findViewById<TextView>(R.id.tvCamGrabacion)
+
+        // Botón volver
+        findViewById<TextView>(R.id.tvBackPlayer).setOnClickListener {
+            finish()
+        }
+
+        // Datos recibidos
+        playlist = intent.getStringArrayListExtra("playlist")
+        label = intent.getStringExtra("label")
+        nvrId = intent.getStringExtra("nvrId")
+
+        // Fallback del nvrId
+        if (nvrId.isNullOrEmpty()) {
+            val user = FirebaseAuth.getInstance().currentUser
+            nvrId = user?.uid
+        }
+
+        if (playlist.isNullOrEmpty() || nvrId.isNullOrEmpty()) {
+            Toast.makeText(this, "No se pudo cargar la grabación.", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        // Título arriba
+        tvFecha.text = label ?: "Grabaciones del día"
+
+        // ⚠ Obtener la cámara desde el primer clip del playlist
+        val firstName = playlist!!.first()
+        val base = firstName.substringBeforeLast(".")
+        val camSlug = base.substringAfterLast("_") // ejemplo sala → SALA
+
+        tvCam.text = camSlug.replace("_", " ").uppercase()
+
+        inicializarPlayerConPlaylist(playlist!!, nvrId!!)
+    }
+
+    private fun inicializarPlayerConPlaylist(names: List<String>, nvrId: String) {
+
+        val storageRoot = Firebase.storage.reference
+            .child("recordings")
+            .child(nvrId)
 
         player = ExoPlayer.Builder(this).build()
-        pv.player = player
+        playerView.player = player
 
-        val storageRefName = intent.getStringExtra("storageRef")
-        val tagIA = intent.getStringExtra("aiTag")
-        val fechaClip = intent.getStringExtra("fecha")
-        val localUrl = intent.getStringExtra("url")
+        var started = false
 
-        tvTagIA?.text = tagIA ?: "Evento"
-        tvFecha?.text = fechaClip ?: ""
+        for (fileName in names) {
+            val ref = storageRoot.child(fileName)
 
-        when {
-            !storageRefName.isNullOrEmpty() -> reproducirDesdeFirebase(storageRefName)
-            !localUrl.isNullOrEmpty() -> reproducirDesdeLocal(localUrl)
-            else -> Toast.makeText(this, "No se encontró la grabación", Toast.LENGTH_LONG).show()
+            ref.downloadUrl
+                .addOnSuccessListener { uri ->
+                    val item = MediaItem.fromUri(uri)
+                    player?.addMediaItem(item)
+
+                    if (!started) {
+                        started = true
+                        player?.prepare()
+                        player?.playWhenReady = true
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error cargando $fileName", Toast.LENGTH_LONG).show()
+                }
         }
     }
 
-    private fun reproducirDesdeLocal(url: String) {
-        val mediaItem = MediaItem.fromUri(Uri.parse(url))
-        player?.setMediaItem(mediaItem)
-        player?.prepare()
-        player?.playWhenReady = true
-    }
-
-    private fun reproducirDesdeFirebase(storageRefName: String) {
-        val ref = Firebase.storage.reference.child("live").child(storageRefName)
-        ref.downloadUrl
-            .addOnSuccessListener { uri ->
-                val mediaItem = MediaItem.fromUri(uri)
-                player?.setMediaItem(mediaItem)
-                player?.prepare()
-                player?.playWhenReady = true
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error cargando clip: ${e.message}", Toast.LENGTH_LONG).show()
-            }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         player?.release()
         player = null
     }
 }
-

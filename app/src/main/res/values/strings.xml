@@ -28,6 +28,20 @@
     <string name="youtube_live_url" formatted="false" translatable="false">
     https://www.youtube.com/embed/3xUAyGMVB7Y?autoplay=1&amp;mute=1&amp;playsinline=1&amp;modestbranding=1
 </string>
+    <string name="nvr_cams_back_inicio">&lt; Inicio</string>
+    <string name="nvr_cams_title">Cámaras del NVR</string>
+    <string name="nvr_cams_desc">
+    Registra aquí las cámaras que graba esta PC (NVR). El script usará esta lista automáticamente.
+</string>
+    <string name="nvr_cams_label_nombre">Nombre de la cámara</string>
+    <string name="nvr_cams_hint_nombre">Sala, Portón, Pasillo...</string>
+    <string name="nvr_cams_label_rtsp">RTSP de la cámara</string>
+    <string name="nvr_cams_hint_rtsp">rtsp://usuario:pass@ip:puerto/Streaming/Channels/101</string>
+    <string name="nvr_cams_btn_guardar">Guardar cámara</string>
+    <string name="nvr_cam_name_placeholder">Nombre de la cámara</string>
+    <string name="nvr_cam_rtsp_placeholder">rtsp://...</string>
+    <string name="nvr_cam_edit">Editar cámara</string>
+    <string name="nvr_cam_delete">Eliminar cámara</string>
 
 
     <string name="user_icon">Icono de usuario</string>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootVincularNvr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#142431">
+
+    <!-- Volver a Inicio -->
+    <TextView
+        android:id="@+id/tvBackInicioNvr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt; Inicio"
+        android:textColor="#31B7FF"
+        android:textSize="18sp"
+        android:fontFamily="serif" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTituloNvr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Vincular NVR"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- Estado actual del NVR -->
+    <TextView
+        android:id="@+id/tvEstadoNvr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Revisando si tienes un NVR vinculado..."
+        android:textColor="#B0BEC5"
+        android:textSize="14sp" />
+
+    <!-- IP de la PC que actúa como NVR -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="IP de la PC (NVR)"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etPcIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="Ej: 192.168.1.11"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="#000000"
+        android:textColorHint="#607D8B" />
+
+    <!-- Botones Guardar / Cancelar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnCancelarNvr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btnGuardarNvr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Guardar" />
+    </LinearLayout>
+
+    <!-- Desvincular NVR actual -->
+    <Button
+        android:id="@+id/btnDesvincularNvr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Desvincular NVR"
+        android:visibility="gone" />
+
+    <!-- Ir a gestionar cámaras -->
+    <Button
+        android:id="@+id/btnGestionarCams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gestionar cámaras del NVR"
+        android:layout_marginTop="16dp" />
+
+    <!-- Mensaje extra sobre el vínculo -->
+    <TextView
+        android:id="@+id/tvEstadoVinculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

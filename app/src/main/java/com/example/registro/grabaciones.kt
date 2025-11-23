@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.ktx.storage
@@ -23,26 +24,44 @@ class grabaciones : AppCompatActivity() {
     private lateinit var adapter: FechasAdapter
     private val fechasUnicas = mutableListOf<String>()
 
-    // formatos de fecha que usamos siempre (día y día+hora)
+    // Resumen por fecha: "SALA · PORTON"
+    private val resumenPorFecha = mutableMapOf<String, String>()
+
+    // Formatos de fecha/hora
+    private val sdfEntrada = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
     private val sdfDia = SimpleDateFormat("dd/MM/yyyy", Locale.US)
     private val sdfFull = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US)
 
-    // string de la fecha de AHORITA, ej "28/10/2025"
-    private val hoyString = sdfDia.format(Date())
+    // Carpeta del NVR para este usuario (uid)
+    private var nvrIdParaEsteUsuario: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grabaciones)
 
+        // Botón "< Inicio"
+        findViewById<TextView>(R.id.tvBackInicioGrab).setOnClickListener {
+            startActivity(Intent(this, Inicio::class.java))
+            finish()
+        }
+
         rvFechas = findViewById(R.id.rvFechas)
         rvFechas.layoutManager = LinearLayoutManager(this)
 
-        adapter = FechasAdapter(fechasUnicas) { fecha ->
+        adapter = FechasAdapter(
+            fechas = fechasUnicas,
+            resumenPorFecha = resumenPorFecha
+        ) { fecha ->
             val intent = Intent(this, GrabacionesDetalleActivity::class.java)
             intent.putExtra("fecha", fecha)
+            intent.putExtra("nvrId", nvrIdParaEsteUsuario)
             startActivity(intent)
         }
         rvFechas.adapter = adapter
+
+        // nvrId = uid del usuario logueado
+        val user = FirebaseAuth.getInstance().currentUser
+        nvrIdParaEsteUsuario = user?.uid
     }
 
     override fun onResume() {
@@ -50,67 +69,67 @@ class grabaciones : AppCompatActivity() {
         cargarClipsDesdeFirebaseYActualizarPantalla()
     }
 
-    /**
-     * 1. Descarga lista de archivos en /live de Firebase Storage.
-     * 2. Mete cada archivo a ClipRepo con su fecha.
-     * 3. Si para la fecha de hoy no vino nada, inyectamos 4 clips falsos predefinidos.
-     * 4. Refrescamos las viñetas.
-     */
     private fun cargarClipsDesdeFirebaseYActualizarPantalla() {
-        val storageRef = Firebase.storage.reference.child("live")
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            Toast.makeText(this, "Debes iniciar sesión para ver grabaciones", Toast.LENGTH_LONG)
+                .show()
+            return
+        }
+
+        // Si por alguna razón nvrId es null, usamos el uid
+        val nvrId = nvrIdParaEsteUsuario ?: user.uid
+        nvrIdParaEsteUsuario = nvrId
+
+        val storageRef = Firebase.storage.reference
+            .child("recordings")
+            .child(nvrId)
 
         storageRef.listAll()
             .addOnSuccessListener { result: ListResult ->
-                // limpiamos todo para no duplicar
                 ClipRepo.clipsGuardados.clear()
 
                 if (result.items.isEmpty()) {
-                    // si literalmente no hay nada en Firebase todavía,
-                    // creamos la fecha de hoy con clips fake
-                    agregarClipsDeHoyPredeterminados()
                     refrescarListaFechas()
                     return@addOnSuccessListener
                 }
 
-                var pendientes = result.items.size
-                var hoyTuvoClips = false
+                // Ya no pedimos metadata. Leemos TODO del nombre del archivo
+                // Formato esperado: 2025-11-22_00-10-30_sala.mp4
+                for (itemRef in result.items) {
+                    val fileName = itemRef.name
+                    val baseName = fileName.substringBeforeLast(".")      // 2025-11-22_00-10-30_sala
+                    val fechaHoraPart = baseName.substringBeforeLast("_") // 2025-11-22_00-10-30
+                    val camSlug = baseName.substringAfterLast("_")        // sala (o sala_porton, etc.)
 
-                result.items.forEach { itemRef ->
-                    itemRef.metadata
-                        .addOnSuccessListener { meta ->
-                            val millis = meta.updatedTimeMillis
-                            val fechaDia = sdfDia.format(Date(millis))      // ej "28/10/2025"
-                            val fechaFull = sdfFull.format(Date(millis))    // ej "28/10/2025 02:47:11"
+                    val fechaGrabacion: Date? = try {
+                        sdfEntrada.parse(fechaHoraPart)
+                    } catch (e: Exception) {
+                        null
+                    }
 
-                            // por ahora ponemos cam fija = 1 (igual que venías)
-                            val camForThis = 1
+                    if (fechaGrabacion == null) {
+                        // Si el nombre no respeta el formato, saltamos este archivo
+                        continue
+                    }
 
-                            val clip = ClipItem(
-                                fechaDia = fechaDia,
-                                fechaCompleta = fechaFull,
-                                cam = camForThis,
-                                storageRef = itemRef.name // ej "C0309.mp4"
-                            )
+                    val fechaDia = sdfDia.format(fechaGrabacion)          // 22/11/2025
+                    val fechaFull = sdfFull.format(fechaGrabacion)        // 22/11/2025 00:10:30
 
-                            ClipRepo.agregarClip(clip)
+                    val camLabel = camSlug.replace("_", " ").uppercase()  // SALA, PORTON, etc.
 
-                            if (fechaDia == hoyString) {
-                                hoyTuvoClips = true
-                            }
-                        }
-                        .addOnCompleteListener {
-                            pendientes -= 1
-                            if (pendientes == 0) {
-                                // ya procesamos TODO Firebase
-                                if (!hoyTuvoClips) {
-                                    // si Firebase NO tenía nada etiquetado con la fecha de hoy,
-                                    // metemos los 4 clips fake para hoy
-                                    agregarClipsDeHoyPredeterminados()
-                                }
-                                refrescarListaFechas()
-                            }
-                        }
+                    val clip = ClipItem(
+                        storageRef = fileName,
+                        fechaDia = fechaDia,
+                        fechaCompleta = fechaFull,
+                        camLabel = camLabel
+                    )
+
+                    ClipRepo.agregarClip(clip)
                 }
+
+                // Una vez procesados todos
+                refrescarListaFechas()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
@@ -118,71 +137,36 @@ class grabaciones : AppCompatActivity() {
                     "Error al leer Storage: ${e.message}",
                     Toast.LENGTH_LONG
                 ).show()
-
-                // si falló Firebase igual queremos poder ver algo hoy
-                agregarClipsDeHoyPredeterminados()
                 refrescarListaFechas()
             }
     }
 
-    /**
-     * Esta función crea 4 clips "dummy" (fijos) y los mete en ClipRepo
-     * bajo la fecha actual (hoyString). Eso hace que:
-     *
-     * - Siempre exista la tarjeta "28/10/2025"
-     * - Al abrirla, GrabacionesDetalleActivity muestre esos clips
-     */
-    private fun agregarClipsDeHoyPredeterminados() {
-        val marcaCompleta = sdfFull.format(Date())
-
-        // Nombres EXACTOS según tu Firebase Storage
-        val nombresClips = listOf(
-            "C0309.MP4",
-            "C0311.MP4",
-            "C0325.MP4",
-            "C0333.MP4"
-        )
-
-        for (nombre in nombresClips) {
-            val clip = ClipItem(
-                fechaDia = hoyString,
-                fechaCompleta = marcaCompleta,
-                cam = 1,
-                storageRef = nombre
-            )
-            ClipRepo.agregarClip(clip)
-        }
-    }
-
-    /**
-     * Rellena la lista de viñetas (fechas únicas) en pantalla
-     */
     private fun refrescarListaFechas() {
-        val listaFechas = ClipRepo.fechasUnicas() // ya viene ordenada por cómo la guardás
+        val listaFechas = ClipRepo.fechasUnicas()
 
         fechasUnicas.clear()
-        fechasUnicas.addAll(listaFechas)
+        resumenPorFecha.clear()
 
-        // si por alguna razón hoy no está aún en la listaFechas,
-        // lo forzamos al final para que se vea la viñeta igual
-        if (!fechasUnicas.contains(hoyString)) {
-            fechasUnicas.add(hoyString)
+        for (fecha in listaFechas) {
+            fechasUnicas.add(fecha)
+
+            val cams = ClipRepo.camsPorFecha(fecha)
+            val resumen = if (cams.isEmpty()) "" else cams.joinToString(" · ")
+            resumenPorFecha[fecha] = resumen
         }
 
         adapter.notifyDataSetChanged()
     }
 
-    // =====================================================
-    // ADAPTER: pinta las viñetas de fechas en el RecyclerView
-    // =====================================================
     class FechasAdapter(
         private val fechas: List<String>,
+        private val resumenPorFecha: Map<String, String>,
         private val onClickFecha: (String) -> Unit
     ) : RecyclerView.Adapter<FechasAdapter.FechaViewHolder>() {
 
         class FechaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            // tu layout item_fecha.xml solo tiene este TextView
             val tvFecha: TextView = itemView.findViewById(R.id.tvFecha)
+            val tvCamsResumen: TextView = itemView.findViewById(R.id.tvCamsResumen)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FechaViewHolder {
@@ -194,13 +178,10 @@ class grabaciones : AppCompatActivity() {
         override fun onBindViewHolder(holder: FechaViewHolder, position: Int) {
             val fecha = fechas[position]
             holder.tvFecha.text = fecha
-
-            holder.itemView.setOnClickListener {
-                onClickFecha(fecha)
-            }
+            holder.tvCamsResumen.text = resumenPorFecha[fecha] ?: ""
+            holder.itemView.setOnClickListener { onClickFecha(fecha) }
         }
 
         override fun getItemCount(): Int = fechas.size
     }
 }
-

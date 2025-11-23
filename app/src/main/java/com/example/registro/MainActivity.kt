@@ -80,4 +80,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    private fun enlazarNvr(uid: String) {
+        try {
+            // Ruta de red compartida hacia tu PC NVR
+            val path = "\\\\192.168.1.20\\SentriNVR\\owner_uid.txt"
+
+            val file = java.io.File(path)
+            file.writeText(uid)
+
+            println("NVR enlazado correctamente con UID = $uid")
+        } catch (e: Exception) {
+            println("Error enlazando NVR: ${e.message}")
+        }
+    }
+
 }

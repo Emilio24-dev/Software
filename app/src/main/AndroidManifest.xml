@@ -117,6 +117,10 @@
         <activity
             android:name=".SingleCameraActivity"
             android:exported="false" />
+        <activity android:name=".VincularNvrActivity" />
+        <activity android:name=".NvrCamsActivity" />
+
+
     </application>
 
 </manifest>
