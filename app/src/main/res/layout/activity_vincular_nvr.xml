@@ -12,7 +12,7 @@
         android:id="@+id/tvBackInicioNvr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt; Inicio"
+        android:text="@string/nvr_cams_back_inicio"
         android:textColor="#31B7FF"
         android:textSize="18sp"
         android:fontFamily="serif" />
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Vincular NVR"
+        android:text="@string/nvr_title"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Revisando si tienes un NVR vinculado..."
+        android:text="@string/nvr_revision"
         android:textColor="#B0BEC5"
         android:textSize="14sp" />
 
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="IP de la PC (NVR)"
+        android:text="@string/PC_IP"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />
 
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:drawable/edit_text"
-        android:hint="Ej: 192.168.1.11"
+        android:hint="@string/nvr_ex"
         android:inputType="text"
         android:padding="8dp"
         android:textColor="#000000"
@@ -71,14 +71,14 @@
             android:id="@+id/btnCancelarNvr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar" />
+            android:text="@string/btnCancell" />
 
         <Button
             android:id="@+id/btnGuardarNvr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Guardar" />
+            android:text="@string/btnSave" />
     </LinearLayout>
 
     <!-- Desvincular NVR actual -->
@@ -95,7 +95,7 @@
         android:id="@+id/btnGestionarCams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gestionar cámaras del NVR"
+        android:text="@string/nvr_gest"
         android:layout_marginTop="16dp" />
 
     <!-- Mensaje extra sobre el vínculo -->

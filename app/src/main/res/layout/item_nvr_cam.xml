@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/itemCamName"
-        android:text="Nombre"
+        android:text="@string/Prof_name"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_edit"
             android:background="@android:color/transparent"
-            android:contentDescription="Editar cámara"/>
+            android:contentDescription="@string/nvr_cam_edit"/>
 
         <ImageButton
             android:id="@+id/btnDeleteCam"
@@ -45,7 +45,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_delete"
             android:background="@android:color/transparent"
-            android:contentDescription="Eliminar cámara"/>
+            android:contentDescription="@string/nvr_cam_delete"/>
     </LinearLayout>
 
 </LinearLayout>

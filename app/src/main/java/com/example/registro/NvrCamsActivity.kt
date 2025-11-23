@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class NvrCamsActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
 
     private lateinit var tvBack: TextView
     private lateinit var etCamName: EditText

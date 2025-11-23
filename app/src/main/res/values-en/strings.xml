@@ -31,6 +31,8 @@
     <string name="capture_cancelled">Capture cancelled</string>
     <string name="capture_error" >The capture cannot be started</string>
     <string name="Recordings">Recordings</string>
+    <string name="Back_Recordings">&lt; Recordings</string>
+    <string name="play">Play all day</string>
 
    <!-- Sett screen -->
 
@@ -64,6 +66,7 @@
 
     <string name="Home">◀ Home</string>
     <string name="Alerts">❗ Alerts</string>
+    <string name="Move">Motion detected</string>
 
     <!-- Perfil -->
 
@@ -103,6 +106,7 @@
     <!-- Player -->
 
     <string name="Detect">Detected person</string>
+    <string name="Day_record">&lt; Recordings of the day</string>
 
     <!-- Cambio de contra -->
 
@@ -129,5 +133,31 @@
     <string name="Contact">Contact us</string>
     <string name="Consultar">How can we help you?</string>
 
+    <!-- NVR -->
+
+    <string name="nvr_cams_back_inicio">&lt; Home</string>
+    <string name="nvr_title">Link NVR</string>
+    <string name="nvr_revision">Checking if you have a linked NVR...</string>
+    <string name="PC_IP">PC (NVR) IP Adress</string>
+    <string name="nvr_ex">Example: 192.168.1.11</string>
+    <string name="btnCancell">Cancel</string>
+    <string name="btnSave">Save</string>
+    <string name="nvr_cams_title">NVR cameras</string>
+    <string name="nvr_cams_desc">
+    Register here the cameras that this PC (NVR) records. The script will use this list automatically.
+</string>
+    <string name="nvr_gest">Manage NVR cameras</string>
+    <string name="nvr_cams_label_nombre">Camera name</string>
+    <string name="nvr_manag">Manage cameras</string>
+    <string name="nvr_cams_hint_nombre">wing, gate, corridor...</string>
+    <string name="nvr_cams_btn_guardar">Save camera</string>
+    <string name="Volver">&lt; Return</string>
+    <string name="nvr_cams_label_rtsp">RTSP camera</string>
+    <string name="nvr_cam_name_placeholder">Camera name</string>
+    <string name="nvr_cams_hint_rtsp">rtsp://user:pass@ip:port/Streaming/Channels/101</string>
+    <string name="rtsp_hint">rtsp://user:pass@IP:PORT/...</string>
+    <string name="nvr_cam_rtsp_placeholder">rtsp://...</string>
+    <string name="nvr_cam_edit">Edit camera</string>
+    <string name="nvr_cam_delete">Delete camera</string>
 
 </resources>
