@@ -106,6 +106,7 @@
     <string name="Prof_phone">Telefono</string>
     <string name="EditName">Editar datos</string>
     <string name="SaveChanges">Guardar cambios</string>
+    <string name="DeleteAcc">Eliminar cuenta</string>
 
 
     <!-- Notificaciones -->

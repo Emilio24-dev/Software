@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import androidx.appcompat.app.AlertDialog
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -28,6 +29,8 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var btnInicio: TextView
     private lateinit var btnEditar: Button
     private lateinit var btnGuardar: Button
+    private lateinit var btnDeleteAccount: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +49,7 @@ class PerfilActivity : AppCompatActivity() {
         btnInicio = findViewById(R.id.btninicio)
         btnEditar = findViewById(R.id.btnEditar)
         btnGuardar = findViewById(R.id.btnGuardar)
+        btnDeleteAccount = findViewById(R.id.btnDelete)
 
         // ====== CARGAR DATOS DEL USUARIO ======
         val user = auth.currentUser
@@ -89,6 +93,51 @@ class PerfilActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
+        }
+
+        // ====== ELIMINAR CUENTA ======
+        btnDeleteAccount.setOnClickListener {
+            val user = auth.currentUser
+            if (user == null) {
+                Toast.makeText(this, "No hay sesión activa", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val userId = user.uid
+
+            AlertDialog.Builder(this)
+                .setTitle("Eliminar cuenta")
+                .setMessage("¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.")
+                .setPositiveButton("Sí, eliminar") { _, _ ->
+                    // 1. Borrar datos del usuario en Realtime Database
+                    database.child(userId).removeValue()
+                        .addOnCompleteListener {
+                            // 2. Borrar el usuario de Firebase Auth
+                            user.delete()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Toast.makeText(
+                                            this,
+                                            "Cuenta eliminada correctamente",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+
+                                        // Volver a la pantalla de login y limpiar el back stack
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        startActivity(intent)
+                                    } else {
+                                        Toast.makeText(
+                                            this,
+                                            "Error al eliminar la cuenta: ${task.exception?.localizedMessage}",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
+                        }
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
 
         // ====== ACTIVAR EDICIÓN ======

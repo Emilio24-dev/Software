@@ -76,6 +76,7 @@
     <string name="Prof_phone">Phone</string>
     <string name="EditName">Edit data</string>
     <string name="SaveChanges">Save changes</string>
+    <string name="DeleteAcc">Delete acc</string>
 
     <!-- Notificaciones -->
 

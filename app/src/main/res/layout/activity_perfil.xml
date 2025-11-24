@@ -98,4 +98,13 @@
         android:text="@string/settings_logout"
         android:textColor="@android:color/white" />
 
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="@string/DeleteAcc"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
