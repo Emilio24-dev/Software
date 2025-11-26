@@ -161,4 +161,30 @@
     <string name="nvr_cam_edit">Edit camera</string>
     <string name="nvr_cam_delete">Delete camera</string>
 
+    <!-- Manual de usuario -->
+
+    <string name="Btn_Help">Help/Manual</string>
+    <string name="Title_Manual">Help and FAQ</string>
+    <string name="first_question">What is Sentri?</string>
+    <string name="first_response">Sentri is a mobile app that provides home security through AI-powered motion detection to
+      keep homes safe by monitoring in real time and recording activity.
+      You can also change the language, report issues, and more.</string>
+    <string name="sec_question">How do I see my cameras?</string>
+    <string name="sec_resp">1. Go to the Cameras button.\n2. Add a camera, give it any name you like, and enter the camera\'s RTSP address.\n3. Make sure you have an internet connection or are connected to the local network where your cameras are located.</string>
+    <string name="third_question">How do I view my recordings?</string>
+    <string name="fourth_question">How does AI work?</string>
+    <string name="fifth_quest">How do I report a problem?</string>
+    <string name="fifth_resp">From the Support section, go to \'Report a problem, describe what\'s happening and press Submit to send your report to the development team, but first choose the email application (gmail).</string>
+    <string name="btnVideoReports">Watch video: How to send reports?</string>
+    <string name="sixth_question">How do I submit a suggestion?</string>
+    <string name="VideoSuger">Watch video: How to send suggestions?</string>
+    <string name="sixth_resp">Go to the Suggestions button, write your idea to improve the app and press Send, and just like in reports, choose the Gmail application when you send it.</string>
+    <string name="consult_question">How do I make an inquiry?</string>
+    <string name="consult_resp">Go to the "queries" button within the support section, write down what you need help with, and it will be sent to our email. You can also choose the Gmail application to send the inquiry.</string>
+    <string name="VideoConsul">Watch video: How to send queries</string>
+    <string name="language_question">How do I change the language?</string>
+    <string name="language_resp">To change the language from Spanish to English or from English to Spanish, you must go to the language button in the settings menu and select the language you want.</string>
+    <string name="language_video">Watch video: How to change language?</string>
+    <string name="language_note">Note: If you are left on a black screen after selecting the language, return to the previous screen using the back button and the translations will load.</string>
+
 </resources>
