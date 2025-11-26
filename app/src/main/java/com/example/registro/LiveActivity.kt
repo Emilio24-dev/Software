@@ -1,9 +1,9 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -21,6 +21,12 @@ import com.google.firebase.database.FirebaseDatabase
 
 @UnstableApi
 class LiveActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     data class Camera(val name: String, val url: String)
 

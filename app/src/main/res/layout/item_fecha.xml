@@ -3,19 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp">
+    android:padding="12dp"
+    android:background="#17212b">
 
+    <!-- Fecha -->
     <TextView
         android:id="@+id/tvFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="28/10/2025"
-        android:textColor="#000000"
+        android:text="22/11/2025"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:paddingVertical="10dp"
-        android:background="@drawable/fondo_fecha"/>
-    <!-- fondo_fecha = tu pill gris -->
+        android:textStyle="bold" />
+
+    <!-- Nombre de la cámara -->
+    <TextView
+        android:id="@+id/tvCams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="SALA"
+        android:textColor="#B0BEC5"
+        android:textSize="13sp" />
+
 </LinearLayout>

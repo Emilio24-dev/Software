@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Sentri</string>
+
+    <!-- Language screen -->
+    <string name="settings_back">‹ Settings</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_subtitle">Language list</string>
+    <string name="language_spanish_sv">Spanish (El Salvador)</string>
+    <string name="language_english_us">English (United States)</string>
+    <string name="language_changed_restart">Language updated. Restarting Sentri…</string>
+
+    <!--- Registro -->
+
+    <string name="hint_nombre">Name</string>
+    <string name="hint_correo">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_registrarse">Sign up</string>
+    <string name="volver_login">Back to login</string>
+    <string name="volver_login1">Login</string>
+    <string name="hint_telefono">Phone</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="btninicio">Back to home</string>
+
+   <!-- Grabación -->
+    <string name="record_start">● RECORD</string>
+    <string name="record_stop">■ STOP</string>
+    <string name="recording_now">Recording…</string>
+    <string name="saved_to_movies">Recording saved in Movies/Sentri</string>
+    <string name="capture_cancelled">Capture cancelled</string>
+    <string name="capture_error" >The capture cannot be started</string>
+    <string name="Recordings">Recordings</string>
+    <string name="Back_Recordings">&lt; Recordings</string>
+    <string name="play">Play all day</string>
+    <string name="CAM">CAMERA</string>
+
+   <!-- Sett screen -->
+
+    <string name="start_back">‹ Home</string>
+    <string name="settings_title">Settings</string>
+    <string name="language_text">Language</string>
+    <string name="notifications">Notificactions</string>
+    <string name="Suggestions">Suggestions</string>
+    <string name="support">Support</string>
+    <string name="settings_logout">Log out</string>
+
+    <!-- En vivo -->
+
+
+    <string name="HomeBack">← Home</string>
+    <string name="Live">Live</string>
+    <string name="CamBtn">Add camera</string>
+
+    <!-- Login -->
+
+    <string name="mail_text">Mail</string>
+    <string name="Write_mail">Email</string>
+    <string name="password">Password</string>
+    <string name="Started_session">Stay logged in</string>
+    <string name="Started">Start</string>
+    <string name="Forgett">Forgot your password</string>
+    <string name="NoAcc">Don´t have an account?</string>
+    <string name="Register"> Regíster</string>
+
+    <!-- Alertas -->
+
+    <string name="Home">◀ Home</string>
+    <string name="Alerts">❗ Alerts</string>
+    <string name="Move">Motion detected</string>
+
+    <!-- Perfil -->
+
+    <string name="Home_prof">&lt; Home</string>
+    <string name="Change">Change password</string>
+    <string name="Prof_name">Name</string>
+    <string name="Prof_phone">Phone</string>
+    <string name="EditName">Edit data</string>
+    <string name="SaveChanges">Save changes</string>
+    <string name="DeleteAcc">Delete acc</string>
+
+    <!-- Notificaciones -->
+
+    <string name="Alerts_noti">Alerts</string>
+    <string name="Push">Push notifications</string>
+
+    <!-- Sugerencias -->
+
+    <string name="Suggest_back">&lt; Suggestions</string>
+    <string name="SuggestWrite">Write a suggestion</string>
+    <string name="SuggestAdd">What would you like to see added?</string>
+    <string name="SendSuggest">Send</string>
+
+    <!-- Soporte -->
+
+    <string name="Problem_write">Report a problem</string>
+    <string name="Service">Queries</string>
+    <string name="Queries">Consultation service</string>
+
+
+    <!-- Recuperar contraseña -->
+
+    <string name="textViewResetTitle">Recover password</string>
+    <string name="Enter_email">Enter your email</string>
+    <string name="Send_link">Send link</string>
+    <string name="Ret_Login">Return to login</string>
+
+    <!-- Player -->
+
+    <string name="Detect">Detected person</string>
+    <string name="Day_record">&lt; Recordings of the day</string>
+
+    <!-- Cambio de contra -->
+
+    <string name="profile_back">&lt; profile</string>
+    <string name="current_pass">Current password</string>
+    <string name="New_pass">New password</string>
+    <string name="Update">Update password</string>
+
+    <!-- Cambiar correo -->
+
+    <string name="New_email">New email</string>
+    <string name="Save_email">Save new email</string>
+
+    <!-- Reportes -->
+
+    <string name="BackSupport">&lt; Support</string>
+    <string name="ReportTitle">Report problem</string>
+    <string name="ReportDesc">Briefly explain what the problem is.</string>
+    <string name="SendBtn">Send</string>
+
+
+    <!-- Consultas -->
+
+    <string name="Contact">Contact us</string>
+    <string name="Consultar">How can we help you?</string>
+
+    <!-- NVR -->
+
+    <string name="nvr_cams_back_inicio">&lt; Home</string>
+    <string name="nvr_title">Link NVR</string>
+    <string name="nvr_revision">Checking if you have a linked NVR...</string>
+    <string name="nvr_unlink">Unlink</string>
+    <string name="PC_IP">NVR code</string>
+    <string name="nvr_ex">Example: messi-nvr-01</string>
+    <string name="btnCancell">Cancel</string>
+    <string name="bSave">Link up</string>
+    <string name="nvr_cams_title">NVR cameras</string>
+    <string name="nvr_cams_desc">
+    Register here the cameras that this PC (NVR) records. The script will use this list automatically.
+</string>
+    <string name="nvr_gest">Manage NVR cameras</string>
+    <string name="nvr_cams_label_nombre">Camera name</string>
+    <string name="nvr_manag">Manage cameras</string>
+    <string name="nvr_cams_hint_nombre">wing, gate, corridor...</string>
+    <string name="nvr_cams_btn_guardar">Save camera</string>
+    <string name="Volver">&lt; Return</string>
+    <string name="nvr_cams_label_rtsp">RTSP camera</string>
+    <string name="nvr_cam_name_placeholder">Camera name</string>
+    <string name="nvr_cams_hint_rtsp">rtsp://user:pass@ip:port/Streaming/Channels/101</string>
+    <string name="rtsp_hint">rtsp://user:pass@IP:PORT/...</string>
+    <string name="nvr_cam_rtsp_placeholder">rtsp://...</string>
+    <string name="nvr_cam_edit">Edit camera</string>
+    <string name="nvr_cam_delete">Delete camera</string>
+
+    <!-- Manual de usuario -->
+
+    <string name="Btn_Help">Help/Manual</string>
+    <string name="Title_Manual">Help and FAQ</string>
+    <string name="first_question">What is Sentri?</string>
+    <string name="first_response">Sentri is a mobile app that provides home security through AI-powered motion detection to
+      keep homes safe by monitoring in real time and recording activity.
+      You can also change the language, report issues, and more.</string>
+    <string name="sec_question">How do I see my cameras?</string>
+    <string name="sec_resp">1. Go to the Cameras button.\n2. Add a camera, give it any name you like, and enter the camera\'s RTSP address.\n3. Make sure you have an internet connection or are connected to the local network where your cameras are located.</string>
+    <string name="third_question">How do I view my recordings?</string>
+    <string name="fourth_question">How does AI work?</string>
+    <string name="fifth_quest">How do I report a problem?</string>
+    <string name="fifth_resp">From the Support section, go to \'Report a problem, describe what\'s happening and press Submit to send your report to the development team, but first choose the email application (gmail).</string>
+    <string name="btnVideoReports">Watch video: How to send reports?</string>
+    <string name="sixth_question">How do I submit a suggestion?</string>
+    <string name="VideoSuger">Watch video: How to send suggestions?</string>
+    <string name="sixth_resp">Go to the Suggestions button, write your idea to improve the app and press Send, and just like in reports, choose the Gmail application when you send it.</string>
+    <string name="consult_question">How do I make an inquiry?</string>
+    <string name="consult_resp">Go to the "queries" button within the support section, write down what you need help with, and it will be sent to our email. You can also choose the Gmail application to send the inquiry.</string>
+    <string name="VideoConsul">Watch video: How to send queries</string>
+    <string name="language_question">How do I change the language?</string>
+    <string name="language_resp">To change the language from Spanish to English or from English to Spanish, you must go to the language button in the settings menu and select the language you want.</string>
+    <string name="language_video">Watch video: How to change language?</string>
+    <string name="language_note">Note: If you are left on a black screen after selecting the language, return to the previous screen using the back button and the translations will load.</string>
+
+</resources>

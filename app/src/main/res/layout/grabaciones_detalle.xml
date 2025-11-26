@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="#142431"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Fecha seleccionada -->
+    <!-- Volver -->
+    <TextView
+        android:id="@+id/tvBackDetalleGrab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Back_Recordings"
+
+        android:textColor="#31B7FF"
+        android:textSize="18sp" />
+
+    <!-- Fecha -->
     <TextView
         android:id="@+id/tvFechaDetalle"
-        android:text="28/10/2025"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="--/--/----"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="28sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="28sp" />
 
-    <!-- Lista de clips (grid 2 columnas) -->
+    <!-- Botón reproducir todo el día -->
+    <Button
+        android:id="@+id/btnPlayAllDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/play" />
+
+    <!-- Lista de clips -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCams"
         android:layout_marginTop="12dp"
@@ -26,6 +44,14 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="16dp" />
+    <TextView
+        android:id="@+id/tvCamDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CAM"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="4dp"/>
+
 
 </LinearLayout>
-

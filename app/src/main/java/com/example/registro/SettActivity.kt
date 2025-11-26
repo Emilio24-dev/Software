@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,14 @@ import androidx.core.view.WindowInsetsCompat
 import kotlin.jvm.java
 
 class SettActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,7 +35,7 @@ class SettActivity : AppCompatActivity() {
             startActivity(Intent(this, IdiomaActivity::class.java))
         }
 
-        // ===== Soporte (diagnóstico + navegación) =====
+        // ===== Soporte  =====
         val btnSoporte = findViewById<Button>(R.id.btnSoporte)
         if (btnSoporte == null) {
             Toast.makeText(this, "btnSoporte = null. Revisa el layout de activity_sett.xml", Toast.LENGTH_LONG).show()
@@ -48,7 +57,7 @@ class SettActivity : AppCompatActivity() {
             startActivity(Intent(this, SugerenciasActivity::class.java))
         }
 
-        // Notificaciones (si la tienes)
+        // Notificaciones
         findViewById<Button>(R.id.btnNotificaciones)?.setOnClickListener {
             startActivity(Intent(this, NotificacionesActivity::class.java))
         }
@@ -56,6 +65,12 @@ class SettActivity : AppCompatActivity() {
         // Tema / Cerrar sesión (pendiente)
         //findViewById<Button>(R.id.btnTema)?.setOnClickListener { /* TODO */ }
         findViewById<Button>(R.id.btnCerrarSesion)?.setOnClickListener { /* TODO */ }
+
+        val btnAyuda = findViewById<Button>(R.id.btnAyuda)
+
+        btnAyuda.setOnClickListener {
+            startActivity(Intent(this, AyudaActivity::class.java))
+        }
 
 
 

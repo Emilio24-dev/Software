@@ -1,18 +1,28 @@
 package com.example.registro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
 class GrabacionesDetalleActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        // Bloque que traduce las palabras de español a ingles
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
     private lateinit var fechaSeleccionada: String
+    private lateinit var camLabelSeleccionada: String
+    private var nvrId: String? = null
+
     private lateinit var rv: RecyclerView
     private lateinit var adapter: ClipsAdapter
     private val clipsDeEseDia = mutableListOf<ClipItem>()
@@ -21,59 +31,120 @@ class GrabacionesDetalleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grabaciones_detalle)
 
+        // Datos recibidos
         fechaSeleccionada = intent.getStringExtra("fecha") ?: "N/A"
+        camLabelSeleccionada = intent.getStringExtra("camLabel") ?: ""
+        nvrId = intent.getStringExtra("nvrId")
 
+        // Si nvrId viene nulo, tomamos el uid del usuario
+        if (nvrId.isNullOrEmpty()) {
+            val user = FirebaseAuth.getInstance().currentUser
+            nvrId = user?.uid
+        }
+
+        // Botón "<"
+        findViewById<TextView>(R.id.tvBackDetalleGrab).setOnClickListener {
+            finish()
+        }
+
+        // Títulos
         findViewById<TextView>(R.id.tvFechaDetalle).text = fechaSeleccionada
+        val tvCamDetalle = findViewById<TextView?>(R.id.tvCamDetalle) // opcional
+        tvCamDetalle?.text = camLabelSeleccionada
 
+        // Botón reproducir TODO el día (solo esa cámara)
+        findViewById<Button>(R.id.btnPlayAllDay).setOnClickListener {
+            reproducirTodoElDia()
+        }
+
+        // RecyclerView
         rv = findViewById(R.id.rvCams)
         rv.layoutManager = GridLayoutManager(this, 2)
 
-        adapter = ClipsAdapter(clipsDeEseDia) { clip ->
-            val i = Intent(this, PlayerActivity::class.java)
-            i.putExtra("storageRef", clip.storageRef)
-            i.putExtra("fecha", clip.fechaCompleta)
-            i.putExtra("cam", clip.cam)
-            startActivity(i)
-        }
+        adapter = ClipsAdapter(
+            clips = clipsDeEseDia,
+            onClick = { clip ->
+                // Tap normal → solo ese clip
+                abrirClipIndividual(clip)
+            },
+            onPlayFromHere = { clipInicio ->
+                // Long-press → reproducir desde aquí hasta el final del día
+                reproducirDesdeClip(clipInicio)
+            }
+        )
 
         rv.adapter = adapter
     }
 
     override fun onResume() {
         super.onResume()
-        cargarClipsDeFecha(fechaSeleccionada)
+        cargarClipsDeFechaYCam(fechaSeleccionada, camLabelSeleccionada)
     }
 
-    private fun cargarClipsDeFecha(fechaDia: String) {
+    // Solo clips del día + cámara seleccionada
+    private fun cargarClipsDeFechaYCam(fecha: String, camLabel: String) {
         clipsDeEseDia.clear()
-        clipsDeEseDia.addAll(ClipRepo.clipsPorFecha(fechaDia))
+
+        val lista = ClipRepo
+            .clipsPorFecha(fecha)               // filtra por fecha
+            .filter { it.camLabel == camLabel } // y por cámara
+            .sortedBy { it.fechaCompleta }      // aseguramos orden cronológico
+
+        clipsDeEseDia.addAll(lista)
         adapter.notifyDataSetChanged()
     }
 
-    // --------- Adapter grid 2 columnas ----------
-    private class ClipsAdapter(
-        private val items: List<ClipItem>,
-        private val onClick: (ClipItem) -> Unit
-    ) : RecyclerView.Adapter<ClipsAdapter.VH>() {
+    private fun abrirClipIndividual(clip: ClipItem) {
+        val i = Intent(this, PlayerActivity::class.java)
+        i.putStringArrayListExtra("playlist", arrayListOf(clip.storageRef))
+        i.putExtra("label", clip.fechaCompleta)
+        i.putExtra("nvrId", nvrId)
+        startActivity(i)
+    }
 
-        class VH(v: View) : RecyclerView.ViewHolder(v) {
-            val tvCam: TextView = v.findViewById(R.id.tvCam)
-            val tvInfo: TextView = v.findViewById(R.id.tvInfo)
+    /** Reproduce todos los clips de ese día (solo esa cámara) desde el PRINCIPIO */
+    private fun reproducirTodoElDia() {
+        if (clipsDeEseDia.isEmpty()) {
+            Toast.makeText(this, "No hay clips para este día", Toast.LENGTH_LONG).show()
+            return
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-            val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_cam, parent, false)
-            return VH(v)
-        }
+        val playlist = clipsDeEseDia
+            .sortedBy { it.fechaCompleta }
+            .map { it.storageRef }
 
-        override fun onBindViewHolder(h: VH, pos: Int) {
-            val item = items[pos]
-            h.tvCam.text = "CAM ${item.cam}"
-            h.tvInfo.text = "${item.fechaCompleta} · ${item.storageRef}"
-            h.itemView.setOnClickListener { onClick(item) }
-        }
+        val i = Intent(this, PlayerActivity::class.java)
+        i.putStringArrayListExtra("playlist", ArrayList(playlist))
+        i.putExtra("label", "$fechaSeleccionada - $camLabelSeleccionada (todo el día)")
+        i.putExtra("nvrId", nvrId)
+        startActivity(i)
+    }
 
-        override fun getItemCount() = items.size
+    /** Reproduce desde el clip pulsado (incluido) hasta el final del día */
+    private fun reproducirDesdeClip(clipInicio: ClipItem) {
+        if (clipsDeEseDia.isEmpty()) return
+
+        val indice = clipsDeEseDia.indexOf(clipInicio)
+        if (indice == -1) return
+
+        val playlist = clipsDeEseDia
+            .subList(indice, clipsDeEseDia.size)   // desde ese índice hasta el final
+            .map { it.storageRef }
+
+        val i = Intent(this, PlayerActivity::class.java)
+        i.putStringArrayListExtra("playlist", ArrayList(playlist))
+        i.putExtra(
+            "label",
+            "$fechaSeleccionada - $camLabelSeleccionada (desde ${clipInicio.fechaCompleta})"
+        )
+        i.putExtra("nvrId", nvrId)
+
+        Toast.makeText(
+            this,
+            "Reproduciendo desde ${clipInicio.fechaCompleta}",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        startActivity(i)
     }
 }

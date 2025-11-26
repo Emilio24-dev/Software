@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Registro</string>
-    <string name="app_nam">Sentriii</string>
+    <string name="app_nam" translatable="false">Sentriii</string>
     <string name="hint_nombre">Nombre</string>
     <string name="hint_correo">Correo electronico</string>
     <string name="hint_password">Contraseña</string>
@@ -8,7 +8,7 @@
     <string name="btn_registrarse">Regístrate</string>
     <string name="volver_login">Volver al Inicio de sesion</string>
     <string name="volver_login1">Inicio de sesion</string>
-    <string name="sentri_logo_desc">Logo de Sentri</string>
+    <string name="sentri_logo_desc" translatable="false">Logo de Sentri</string>
     <string name="hint_telefono">Teléfono</string>
     <string name="btninicio">Volver al home</string>
 
@@ -20,15 +20,181 @@
     <string name="saved_to_movies">Grabación guardada en Movies/Sentri</string>
     <string name="capture_cancelled">Captura cancelada</string>
     <string name="capture_error">No se puede iniciar la captura</string>
+    <string name="Recordings">Grabaciones</string>
+    <string name="CAM">CAMARA</string>
 
-    <string name="volver">Volver</string>
-    <string name="youtube_channel_id">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
+    <string name="volver" translatable="false">Volver</string>
+    <string name="youtube_channel_id" translatable="false">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
 
     <!-- res/values/strings.xml -->
     <string name="youtube_live_url" formatted="false" translatable="false">
     https://www.youtube.com/embed/3xUAyGMVB7Y?autoplay=1&amp;mute=1&amp;playsinline=1&amp;modestbranding=1
 </string>
+    <string name="nvr_cams_back_inicio">&lt; Inicio</string>
+    <string name="nvr_title">Vincular NVR</string>
+    <string name="nvr_cams_title">Cámaras del NVR</string>
+    <string name="nvr_revision">Revisando si tienes un NVR vinculado...</string>
+    <string name="PC_IP">Código del NVR</string>
+    <string name="nvr_ex">Ej: messi-nvr-01</string>
+    <string name="btnCancell">Cancelar</string>
+    <string name="bSave">Vincular</string>
+    <string name="nvr_cams_desc">
+    Registra aquí las cámaras que graba esta PC (NVR). El script usará esta lista automáticamente.
+</string>
+    <string name="nvr_gest">Gestionar cámaras del NVR</string>
+    <string name="nvr_manag">Gestionar cámaras</string>
+    <string name="nvr_unlink">Desvincular</string>
+    <string name="nvr_cams_label_nombre">Nombre de la cámara</string>
+    <string name="nvr_cams_hint_nombre">Sala, Portón, Pasillo...</string>
+    <string name="nvr_cams_label_rtsp">RTSP de la cámara</string>
+    <string name="nvr_cams_hint_rtsp">rtsp://usuario:pass@ip:puerto/Streaming/Channels/101</string>
+    <string name="nvr_cams_btn_guardar">Guardar cámara</string>
+    <string name="Volver">&lt; Volver</string>
+    <string name="rtsp_hint">rtsp://usuario:pass@IP:PUERTO/...</string>
+    <string name="nvr_cam_name_placeholder">Nombre de la cámara</string>
+    <string name="nvr_cam_rtsp_placeholder">rtsp://...</string>
+    <string name="nvr_cam_edit">Editar cámara</string>
+    <string name="nvr_cam_delete">Eliminar cámara</string>
+    <string name="Back_Recordings">&lt; Grabaciones</string>
+    <string name="play">Reproducir todo el día</string>
+
+    <!-- Pantalla de idioma -->
+    <string name="settings_back">‹ Configuración</string>
+    <string name="settings_language_title">Idioma</string>
+    <string name="settings_language_subtitle">Lista de idiomas</string>
+    <string name="language_spanish_sv">Español (El Salvador)</string>
+    <string name="language_english_us">Inglés (Estados Unidos)</string>
+    <string name="language_changed_restart">Idioma actualizado. Reiniciando Sentri…</string>
+
+    <!-- Pantalla de sett -->
+
+    <string name="start_back">‹ Inicio</string>
+    <string name="settings_title">Configuracion</string>
+    <string name="language_text">Idioma</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="Suggestions">Sugerencias</string>
+    <string name="support">Soporte</string>
+    <string name="settings_logout">Cerrar sesión</string>
+
+    <!-- En vivo -->
 
 
-    <string name="user_icon">Icono de usuario</string>
+    <string name="HomeBack">← Inicio</string>
+    <string name="Live">En vivo</string>
+    <string name="CamBtn">Agregar cámara</string>
+
+
+    <!-- Login -->
+    <string name="mail_text">Correo</string>
+    <string name="Write_mail">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="Started_session">Mantener sesión iniciada</string>
+    <string name="Started">Iniciar</string>
+    <string name="Forgett">¿Olvidaste tu contraseña?</string>
+    <string name="NoAcc">¿No tienes cuenta?</string>
+    <string name="Register"> Regístrate</string>
+
+    <!-- Alertas -->
+
+    <string name="Home">◀ Inicio</string>
+    <string name="Alerts">❗ Alertas</string>
+    <string name="Move">Movimiento detectado</string>
+
+    <!-- Perfil -->
+
+    <string name="Home_prof">&lt; inicio</string>
+    <string name="Change">Cambiar Contraseña</string>
+    <string name="Prof_name">Nombre</string>
+    <string name="Prof_phone">Telefono</string>
+    <string name="EditName">Editar datos</string>
+    <string name="SaveChanges">Guardar cambios</string>
+    <string name="DeleteAcc">Eliminar cuenta</string>
+
+
+    <!-- Notificaciones -->
+
+    <string name="Alerts_noti">Alertas</string>
+    <string name="Push">Notificaciones Push</string>
+
+    <!-- Sugerencias -->
+
+    <string name="Suggest_back">&lt; Sugerencias</string>
+    <string name="SuggestWrite">Escribe una sugerencia</string>
+    <string name="SuggestAdd">¿Que te gustaria que se agregara?</string>
+    <string name="SendSuggest">Enviar</string>
+
+    <!-- Soporte -->
+
+    <string name="Problem_write">Reportar un problema</string>
+    <string name="Service">Consultas</string>
+    <string name="Queries">Servicio de consultas</string>
+
+
+    <!-- Recuperar contraseña -->
+
+    <string name="textViewResetTitle">Recuperar contraseña</string>
+    <string name="Enter_email">Ingresa tu correo</string>
+    <string name="Send_link">Enviar enlace</string>
+    <string name="Ret_Login">Volver al inicio de sesión</string>
+
+    <!-- Player -->
+
+    <string name="Detect">Persona detectada</string>
+    <string name="Day_record">&lt; Grabaciones del día</string>
+
+
+    <!-- Cambio de contra -->
+
+    <string name="profile_back">&lt; perfil</string>
+    <string name="current_pass">Contraseña actual</string>
+    <string name="New_pass">Nueva contraseña</string>
+    <string name="Update">Actualizar contraseña</string>
+
+    <!-- Cambiar correo -->
+
+    <string name="New_email">Nuevo correo</string>
+    <string name="Save_email">Guardar nuevo correo</string>
+
+    <!-- Reportes -->
+
+    <string name="BackSupport">&lt; Soporte</string>
+    <string name="ReportTitle">Reportar problema</string>
+    <string name="ReportDesc">Explica brevemente cuál es el problema.</string>
+    <string name="SendBtn">Enviar</string>
+
+    <!-- Consultas -->
+
+    <string name="Contact">Contactanos</string>
+    <string name="Consultar">¿En qué podemos ayudarte?</string>
+
+    <!-- Manual de usuario -->
+
+    <string name="Btn_Help">Ayuda/Manual</string>
+    <string name="Title_Manual">Ayuda y preguntas frecuentes</string>
+    <string name="first_question">¿Qué es Sentri?</string>
+    <string name="first_response">Sentri es una aplicación movil que brinda seguridad en el hogar mediante deteccion de movimientos con IA para
+    mantener los hogares a salvo, ya que monitorea en tiempo real y tambien puede guardar grabaciones,
+    tambien puedes cambiar de idioma reportar problemas, etc.</string>
+    <string name="sec_question">¿Cómo veo mis cámaras?</string>
+    <string name="sec_resp">1. Ve al boton de cámaras.\n2. Agrega una camara, ponle el nombre que quieras y pon el rtsp de la camara.\n3. Asegúrate de tener conexión a internet o a la red local donde están tus cámaras.</string>
+    <string name="third_question">¿Cómo veo mis grabaciones?</string>
+    <string name="fourth_question">¿Como funciona la IA?</string>
+    <string name="fifth_quest">¿Cómo reporto un problema?</string>
+    <string name="fifth_resp">Desde la sección de Soporte, entra a \'Reportar un problema\', describe lo que pasa y presiona Enviar para mandar tu reporte al equipo de desarrollo, pero primero elige la aplicacion
+        de correo(gmail).</string>
+    <string name="btnVideoReports">Ver video: ¿Cómo enviar reportes?</string>
+    <string name="sixth_question">¿Cómo envío una sugerencia?</string>
+    <string name="VideoSuger">Ver video: ¿Cómo enviar sugerencias?</string>
+    <string name="sixth_resp">Ve al boton de Sugerencias, escribe tu idea para mejorar la app y presiona Enviar, y al igual que en reportes elige la aplicacion gmail cuando la envies.</string>
+    <string name="consult_question">¿Como hago una consulta?</string>
+    <string name="consult_resp">Ve al boton de consultas que esta dentro de soporte escribe algo en lo que necesites ayuda y se enviara a nuestro correo, tambien elige la aplicacion gmail para enviar la consulta</string>
+    <string name="VideoConsul">Ver video: ¿Cómo enviar Consultas</string>
+    <string name="language_question">¿Como cambiar de idioma?</string>
+    <string name="language_resp">Para cambiar de idioma ya sea de español a ingles o de ingles a español, debes ir al boton de idioma en el boton de configuracion ahi seleccionaras el idioma que quieres.</string>
+    <string name="language_video">Ver video: ¿Cómo cambiar de idioma?</string>
+    <string name="language_note">Nota: si se queda en una pantalla en negro luego de seleccionar el idioma regrese a la pantalla anterior con el boton de regresar y le cargaran las traducciones</string>
+
+
+
+    <string name="user_icon" translatable="false">Icono de usuario</string>
 </resources>

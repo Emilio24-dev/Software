@@ -19,7 +19,7 @@
             android:id="@+id/tvBackConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="‹ Inicio"
+            android:text="@string/settings_back"
             android:textColor="#00B7FF"
             android:textSize="18sp"
             android:fontFamily="serif"
@@ -33,7 +33,7 @@
             android:id="@+id/tvTitleConfig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Configuración"
+            android:text="@string/settings_title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/settings_title_text"
@@ -42,7 +42,7 @@
         <!-- Botón Idioma -->
         <Button
             android:id="@+id/btnIdioma"
-            android:text="Idioma"
+            android:text="@string/language_text"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -74,7 +74,7 @@
         <!-- Botón Notificaciones -->
         <Button
             android:id="@+id/btnNotificaciones"
-            android:text="Notificaciones"
+            android:text="@string/notifications"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -89,7 +89,7 @@
 
         <Button
             android:id="@+id/btnSugerencias"
-            android:text="Sugerencias"
+            android:text="@string/Suggestions"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -105,7 +105,23 @@
         <!-- Botón Soporte -->
         <Button
             android:id="@+id/btnSoporte"
-            android:text="Soporte"
+            android:text="@string/support"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
+        <!-- Botón Ayuda -->
+        <Button
+            android:id="@+id/btnAyuda"
+            android:text="@string/Btn_Help"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -121,7 +137,7 @@
         <!-- Botón Cerrar sesión -->
         <Button
             android:id="@+id/btnCerrarSesion"
-            android:text="Cerrar sesión"
+            android:text="@string/settings_logout"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"

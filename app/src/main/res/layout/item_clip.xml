@@ -3,27 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="#182534"
-    android:layout_marginBottom="6dp"
-    android:elevation="1dp"
-    android:clipToOutline="true">
+    android:padding="8dp"
+    android:background="#1A2633"
+    android:layout_margin="4dp">
 
     <TextView
-        android:id="@+id/tvMensaje"
+        android:id="@+id/tvCamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Move"
+        android:text="CAM 1"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/tvDetalle"
+        android:id="@+id/tvFechaHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CAM1 — 26/10/2025 20:01-20:05"
+        android:text="20/11/2025 21:27:10"
         android:textColor="#B0BEC5"
-        android:textSize="13sp"
+        android:textSize="12sp"
         android:layout_marginTop="2dp" />
+
 </LinearLayout>

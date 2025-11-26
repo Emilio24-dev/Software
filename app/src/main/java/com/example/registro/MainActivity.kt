@@ -13,6 +13,12 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        // Aplica el idioma antes de que se cree la Activity
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
     private lateinit var auth: FirebaseAuth
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
@@ -80,4 +86,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    private fun enlazarNvr(uid: String) {
+        try {
+            // Ruta de red compartida hacia tu PC NVR
+            val path = "\\\\192.168.1.20\\SentriNVR\\owner_uid.txt"
+
+            val file = java.io.File(path)
+            file.writeText(uid)
+
+            println("NVR enlazado correctamente con UID = $uid")
+        } catch (e: Exception) {
+            println("Error enlazando NVR: ${e.message}")
+        }
+    }
+
 }

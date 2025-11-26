@@ -11,7 +11,7 @@
         android:id="@+id/tvBackAyuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt; Soporte"
+        android:text="@string/BackSupport"
         android:textSize="16sp"
         android:textColor="#31B7FF" />
 
@@ -19,17 +19,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Servicio de ayuda"
+        android:text="@string/Queries"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF" />
 
+    <EditText
+        android:id="@+id/etConsultaServicio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="#283549"
+        android:padding="12dp"
+        android:hint="@string/Consultar"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B0B0B0"
+        android:inputType="textMultiLine"
+        android:gravity="top|start" />
+
     <Button
         android:id="@+id/btnContactanos"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Contáctanos"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:text="@string/SendBtn"
         android:background="@drawable/boton_blanco_cuadrado"
         app:backgroundTint="@null"
         android:textColor="#000000" />
