@@ -33,6 +33,7 @@
     <string name="Recordings">Recordings</string>
     <string name="Back_Recordings">&lt; Recordings</string>
     <string name="play">Play all day</string>
+    <string name="CAM">CAMERA</string>
 
    <!-- Sett screen -->
 
@@ -139,10 +140,11 @@
     <string name="nvr_cams_back_inicio">&lt; Home</string>
     <string name="nvr_title">Link NVR</string>
     <string name="nvr_revision">Checking if you have a linked NVR...</string>
-    <string name="PC_IP">PC (NVR) IP Adress</string>
-    <string name="nvr_ex">Example: 192.168.1.11</string>
+    <string name="nvr_unlink">Unlink</string>
+    <string name="PC_IP">NVR code</string>
+    <string name="nvr_ex">Example: messi-nvr-01</string>
     <string name="btnCancell">Cancel</string>
-    <string name="btnSave">Save</string>
+    <string name="bSave">Link up</string>
     <string name="nvr_cams_title">NVR cameras</string>
     <string name="nvr_cams_desc">
     Register here the cameras that this PC (NVR) records. The script will use this list automatically.

@@ -1,5 +1,6 @@
 package com.example.registro
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
@@ -13,6 +14,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 class PlayerActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        // Bloque que traduce las palabras de español a ingles
+        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
+        super.attachBaseContext(localeUpdatedContext)
+    }
 
     private var player: ExoPlayer? = null
     private lateinit var playerView: PlayerView

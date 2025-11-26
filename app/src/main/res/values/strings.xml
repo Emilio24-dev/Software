@@ -21,6 +21,7 @@
     <string name="capture_cancelled">Captura cancelada</string>
     <string name="capture_error">No se puede iniciar la captura</string>
     <string name="Recordings">Grabaciones</string>
+    <string name="CAM">CAMARA</string>
 
     <string name="volver" translatable="false">Volver</string>
     <string name="youtube_channel_id" translatable="false">UCW1DZLJHs4Bz2TYx1fK7OLA</string>
@@ -33,15 +34,16 @@
     <string name="nvr_title">Vincular NVR</string>
     <string name="nvr_cams_title">Cámaras del NVR</string>
     <string name="nvr_revision">Revisando si tienes un NVR vinculado...</string>
-    <string name="PC_IP">IP de la PC (NVR)</string>
-    <string name="nvr_ex">Ej: 192.168.1.11</string>
+    <string name="PC_IP">Código del NVR</string>
+    <string name="nvr_ex">Ej: messi-nvr-01</string>
     <string name="btnCancell">Cancelar</string>
-    <string name="btnSave">Guardar</string>
+    <string name="bSave">Vincular</string>
     <string name="nvr_cams_desc">
     Registra aquí las cámaras que graba esta PC (NVR). El script usará esta lista automáticamente.
 </string>
     <string name="nvr_gest">Gestionar cámaras del NVR</string>
     <string name="nvr_manag">Gestionar cámaras</string>
+    <string name="nvr_unlink">Desvincular</string>
     <string name="nvr_cams_label_nombre">Nombre de la cámara</string>
     <string name="nvr_cams_hint_nombre">Sala, Portón, Pasillo...</string>
     <string name="nvr_cams_label_rtsp">RTSP de la cámara</string>
