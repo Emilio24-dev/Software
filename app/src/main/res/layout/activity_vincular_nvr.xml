@@ -12,10 +12,9 @@
         android:id="@+id/tvBackInicioNvr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nvr_cams_back_inicio"
+        android:text="&lt; Inicio"
         android:textColor="#31B7FF"
-        android:textSize="18sp"
-        android:fontFamily="serif" />
+        android:textSize="18sp" />
 
     <!-- Título -->
     <TextView
@@ -23,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/nvr_title"
+        android:text="Vincular NVR"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -34,32 +33,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/nvr_revision"
+        android:text="Revisando si tienes un NVR vinculado..."
         android:textColor="#B0BEC5"
         android:textSize="14sp" />
 
-    <!-- IP de la PC que actúa como NVR -->
+    <!-- Código del NVR -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/PC_IP"
+        android:text="Código del NVR"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/etPcIp"
+        android:id="@+id/etNvrCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:drawable/edit_text"
-        android:hint="@string/nvr_ex"
+        android:hint="Ej: messi-nvr-01"
         android:inputType="text"
         android:padding="8dp"
         android:textColor="#000000"
         android:textColorHint="#607D8B" />
 
-    <!-- Botones Guardar / Cancelar -->
+    <!-- Botones -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,14 +70,14 @@
             android:id="@+id/btnCancelarNvr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnCancell" />
+            android:text="Cancelar" />
 
         <Button
             android:id="@+id/btnGuardarNvr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/btnSave" />
+            android:text="Vincular" />
     </LinearLayout>
 
     <!-- Desvincular NVR actual -->
@@ -95,10 +94,9 @@
         android:id="@+id/btnGestionarCams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nvr_gest"
+        android:text="Gestionar cámaras del NVR"
         android:layout_marginTop="16dp" />
 
-    <!-- Mensaje extra sobre el vínculo -->
     <TextView
         android:id="@+id/tvEstadoVinculo"
         android:layout_width="match_parent"

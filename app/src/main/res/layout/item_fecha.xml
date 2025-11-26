@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="12dp"
-    android:background="#142431">
+    android:background="#17212b">
 
+    <!-- Fecha -->
     <TextView
         android:id="@+id/tvFecha"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="22/11/2025"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
+    <!-- Nombre de la cámara -->
     <TextView
-        android:id="@+id/tvCamsResumen"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvCams"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text=""
+        android:text="SALA"
         android:textColor="#B0BEC5"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
 </LinearLayout>
