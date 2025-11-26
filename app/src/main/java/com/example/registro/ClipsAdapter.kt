@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ClipsAdapter(
     private val clips: List<ClipItem>,
-    private val onClipClick: (ClipItem) -> Unit
+    // tap normal
+    private val onClick: (ClipItem) -> Unit,
+    // long-press → reproducir desde aquí
+    private val onPlayFromHere: (ClipItem) -> Unit
 ) : RecyclerView.Adapter<ClipsAdapter.ClipViewHolder>() {
 
     inner class ClipViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -25,12 +28,19 @@ class ClipsAdapter(
     override fun onBindViewHolder(holder: ClipViewHolder, position: Int) {
         val clip = clips[position]
 
-        // Aquí usamos los datos del ClipItem
-        holder.tvCamName.text = clip.camLabel      // ej: "SALA", "CAM1"
-        holder.tvFechaHora.text = clip.fechaCompleta
+        // Datos del clip
+        holder.tvCamName.text = clip.camLabel          // ej: "SALA", "CAM1"
+        holder.tvFechaHora.text = clip.fechaCompleta   // ej: "25/11/2025 21:45:00"
 
+        // Tap corto → sólo este clip
         holder.itemView.setOnClickListener {
-            onClipClick(clip)
+            onClick(clip)
+        }
+
+        // Mantener presionado → reproducir desde aquí hasta el final del día
+        holder.itemView.setOnLongClickListener {
+            onPlayFromHere(clip)
+            true
         }
     }
 

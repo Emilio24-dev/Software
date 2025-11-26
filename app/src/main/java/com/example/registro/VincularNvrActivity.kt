@@ -1,6 +1,5 @@
 package com.example.registro
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -13,17 +12,10 @@ import com.google.firebase.database.FirebaseDatabase
 
 class VincularNvrActivity : AppCompatActivity() {
 
-    override fun attachBaseContext(newBase: Context) {
-        // Aplica el idioma antes de que se cree la Activity
-        val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
-        super.attachBaseContext(localeUpdatedContext)
-    }
-
-
-    private lateinit var etPcIp: EditText
+    private lateinit var etNvrCode: EditText
     private lateinit var btnGuardar: Button
     private lateinit var btnCancelar: Button
-    private lateinit var btnDesvincularNvr: Button
+    private lateinit var btnDesvincular: Button
     private lateinit var btnGestionarCams: Button
     private lateinit var tvBackInicioNvr: TextView
     private lateinit var tvEstadoNvr: TextView
@@ -33,36 +25,21 @@ class VincularNvrActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vincular_nvr)
 
-        // Views
-        etPcIp = findViewById(R.id.etPcIp)
+        etNvrCode = findViewById(R.id.etNvrCode)
         btnGuardar = findViewById(R.id.btnGuardarNvr)
         btnCancelar = findViewById(R.id.btnCancelarNvr)
-        btnDesvincularNvr = findViewById(R.id.btnDesvincularNvr)
+        btnDesvincular = findViewById(R.id.btnDesvincularNvr)
         btnGestionarCams = findViewById(R.id.btnGestionarCams)
         tvBackInicioNvr = findViewById(R.id.tvBackInicioNvr)
         tvEstadoNvr = findViewById(R.id.tvEstadoNvr)
         tvEstadoVinculo = findViewById(R.id.tvEstadoVinculo)
 
-        tvEstadoNvr.text = "Buscando si hay un NVR vinculado..."
+        tvBackInicioNvr.setOnClickListener { finish() }
+        btnCancelar.setOnClickListener { finish() }
 
-        // Volver a Inicio
-        tvBackInicioNvr.setOnClickListener {
-            finish()
-        }
+        btnGuardar.setOnClickListener { guardarVinculacion() }
+        btnDesvincular.setOnClickListener { desvincularNvr() }
 
-        btnCancelar.setOnClickListener {
-            finish()
-        }
-
-        btnGuardar.setOnClickListener {
-            guardarVinculacion()
-        }
-
-        btnDesvincularNvr.setOnClickListener {
-            desvincularNvr()
-        }
-
-        // Ir a la pantalla donde se registran varias cámaras
         btnGestionarCams.setOnClickListener {
             startActivity(Intent(this, NvrCamsActivity::class.java))
         }
@@ -78,54 +55,49 @@ class VincularNvrActivity : AppCompatActivity() {
         if (user == null) {
             tvEstadoNvr.text = "Inicia sesión para vincular un NVR."
             tvEstadoVinculo.text = ""
-            btnDesvincularNvr.visibility = Button.GONE
+            btnDesvincular.visibility = Button.GONE
             return
         }
 
         val uid = user.uid
-        val ref = FirebaseDatabase.getInstance()
-            .getReference("nvrLinks")
+        val refUserLink = FirebaseDatabase.getInstance()
+            .getReference("userNvrLinks")
             .child(uid)
 
-        tvEstadoNvr.text = "Buscando si hay un NVR vinculado..."
-        tvEstadoVinculo.text = ""
+        tvEstadoNvr.text = "Revisando si tienes un NVR vinculado..."
 
-        ref.get()
+        refUserLink.get()
             .addOnSuccessListener { snap ->
                 if (!snap.exists()) {
-                    tvEstadoNvr.text = "No hay NVR vinculado aún."
-                    tvEstadoVinculo.text = "Escribe la IP de tu PC NVR y toca Guardar."
-                    btnDesvincularNvr.visibility = Button.GONE
-                    etPcIp.setText("")
+                    tvEstadoNvr.text = "No tienes NVR vinculado aún."
+                    tvEstadoVinculo.text = ""
+                    btnDesvincular.visibility = Button.GONE
                     return@addOnSuccessListener
                 }
 
-                val ip = snap.child("pcIp").getValue(String::class.java) ?: ""
-
-                if (ip.isNotEmpty()) {
-                    tvEstadoNvr.text = "NVR vinculado: $ip"
-                    tvEstadoVinculo.text =
-                        "Si quieres dejar de usar este NVR, toca \"Desvincular NVR\"."
-                    etPcIp.setText(ip)
-                    btnDesvincularNvr.visibility = Button.VISIBLE
+                val nvrId = snap.child("nvrId").getValue(String::class.java) ?: ""
+                if (nvrId.isNotEmpty()) {
+                    tvEstadoNvr.text = "NVR vinculado: $nvrId"
+                    tvEstadoVinculo.text = "Este NVR subirá grabaciones a tu cuenta."
+                    etNvrCode.setText(nvrId)
+                    btnDesvincular.visibility = Button.VISIBLE
                 } else {
-                    tvEstadoNvr.text = "NVR vinculado (sin IP guardada)."
+                    tvEstadoNvr.text = "No tienes NVR vinculado aún."
                     tvEstadoVinculo.text = ""
-                    btnDesvincularNvr.visibility = Button.GONE
+                    btnDesvincular.visibility = Button.GONE
                 }
             }
             .addOnFailureListener { e ->
-                tvEstadoNvr.text = "Error al buscar NVR: ${e.message}"
+                tvEstadoNvr.text = "Error al leer vínculo: ${e.message}"
                 tvEstadoVinculo.text = ""
-                btnDesvincularNvr.visibility = Button.GONE
+                btnDesvincular.visibility = Button.GONE
             }
     }
 
     private fun guardarVinculacion() {
-        val ip = etPcIp.text.toString().trim()
-
-        if (ip.isEmpty()) {
-            Toast.makeText(this, "Escribe la IP de la PC (NVR)", Toast.LENGTH_SHORT).show()
+        val nvrCode = etNvrCode.text.toString().trim()
+        if (nvrCode.isEmpty()) {
+            Toast.makeText(this, "Escribe el código del NVR", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -136,34 +108,66 @@ class VincularNvrActivity : AppCompatActivity() {
         }
 
         val uid = user.uid
+        val email = user.email ?: ""
 
-        val ref = FirebaseDatabase.getInstance()
-            .getReference("nvrLinks")
+        val refByNvr = FirebaseDatabase.getInstance()
+            .getReference("nvrLinksByNvrId")
+            .child(nvrCode)
+
+        val refByUser = FirebaseDatabase.getInstance()
+            .getReference("userNvrLinks")
             .child(uid)
 
-        // Ya no guardamos nombre de cámara aquí, sólo la IP
-        val data = mapOf(
-            "pcIp" to ip
-        )
+        // Primero comprobamos si ese NVR ya tiene dueño
+        refByNvr.get()
+            .addOnSuccessListener { snap ->
+                val existingOwner = snap.child("ownerUid").getValue(String::class.java)
 
-        ref.setValue(data)
-            .addOnSuccessListener {
-                tvEstadoNvr.text = "NVR vinculado: $ip"
-                tvEstadoVinculo.text =
-                    "Si quieres dejar de usar este NVR, toca \"Desvincular NVR\"."
-                btnDesvincularNvr.visibility = Button.VISIBLE
+                if (!existingOwner.isNullOrEmpty() && existingOwner != uid) {
+                    Toast.makeText(
+                        this,
+                        "Este NVR ya está vinculado a otra cuenta.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@addOnSuccessListener
+                }
 
-                Toast.makeText(
-                    this,
-                    "NVR vinculado con esta cuenta.",
-                    Toast.LENGTH_LONG
-                ).show()
-                finish()
+                // Guardamos vínculo NVR -> usuario
+                val dataNvr = mapOf(
+                    "ownerUid" to uid,
+                    "ownerEmail" to email,
+                    "lastUpdate" to System.currentTimeMillis()
+                )
+
+                // Y vínculo usuario -> NVR
+                val dataUser = mapOf(
+                    "nvrId" to nvrCode
+                )
+
+                refByNvr.setValue(dataNvr)
+                    .continueWithTask {
+                        refByUser.setValue(dataUser)
+                    }
+                    .addOnSuccessListener {
+                        Toast.makeText(
+                            this,
+                            "NVR vinculado correctamente.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        cargarEstadoNvr()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(
+                            this,
+                            "Error al vincular: ${e.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
                     this,
-                    "Error al guardar: ${e.message}",
+                    "Error al comprobar NVR: ${e.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -173,20 +177,44 @@ class VincularNvrActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val uid = user.uid
 
-        val ref = FirebaseDatabase.getInstance()
-            .getReference("nvrLinks")
+        val refUser = FirebaseDatabase.getInstance()
+            .getReference("userNvrLinks")
             .child(uid)
 
-        ref.removeValue()
-            .addOnSuccessListener {
-                tvEstadoNvr.text = "No hay NVR vinculado."
-                tvEstadoVinculo.text = "Puedes vincular uno escribiendo la IP y tocando Guardar."
-                btnDesvincularNvr.visibility = Button.GONE
-                etPcIp.setText("")
-                Toast.makeText(this, "NVR desvinculado", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+        refUser.get()
+            .addOnSuccessListener { snap ->
+                if (!snap.exists()) {
+                    Toast.makeText(this, "No hay NVR vinculado.", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+
+                val nvrId = snap.child("nvrId").getValue(String::class.java) ?: ""
+                if (nvrId.isEmpty()) {
+                    refUser.removeValue()
+                    cargarEstadoNvr()
+                    return@addOnSuccessListener
+                }
+
+                val refNvr = FirebaseDatabase.getInstance()
+                    .getReference("nvrLinksByNvrId")
+                    .child(nvrId)
+
+                // Borramos las dos referencias
+                refNvr.removeValue()
+                    .continueWithTask {
+                        refUser.removeValue()
+                    }
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "NVR desvinculado.", Toast.LENGTH_SHORT).show()
+                        cargarEstadoNvr()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(
+                            this,
+                            "Error al desvincular: ${e.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
             }
     }
 }

@@ -26,73 +26,111 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_player)
 
         playerView = findViewById(R.id.playerView)
-
         val tvFecha = findViewById<TextView>(R.id.tvFechaGrabacion)
         val tvCam = findViewById<TextView>(R.id.tvCamGrabacion)
 
-        // Botón volver
+        // Botón "< Grabaciones del día"
         findViewById<TextView>(R.id.tvBackPlayer).setOnClickListener {
             finish()
         }
 
-        // Datos recibidos
+        // Datos que vienen de GrabacionesDetalleActivity
         playlist = intent.getStringArrayListExtra("playlist")
         label = intent.getStringExtra("label")
         nvrId = intent.getStringExtra("nvrId")
 
-        // Fallback del nvrId
+        // Fallback: si no viene nvrId, usamos el uid del usuario logueado
         if (nvrId.isNullOrEmpty()) {
             val user = FirebaseAuth.getInstance().currentUser
             nvrId = user?.uid
         }
 
         if (playlist.isNullOrEmpty() || nvrId.isNullOrEmpty()) {
-            Toast.makeText(this, "No se pudo cargar la grabación.", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                "No se pudo cargar la grabación.",
+                Toast.LENGTH_LONG
+            ).show()
             finish()
             return
         }
 
-        // Título arriba
         tvFecha.text = label ?: "Grabaciones del día"
 
-        // ⚠ Obtener la cámara desde el primer clip del playlist
+        // Si es sólo un clip, deducimos nombre de la cámara
         val firstName = playlist!!.first()
-        val base = firstName.substringBeforeLast(".")
-        val camSlug = base.substringAfterLast("_") // ejemplo sala → SALA
+        val camSlug = firstName.substringBeforeLast(".").substringAfterLast("_")
+        val camLabel = camSlug.replace("_", " ").uppercase()
+        tvCam.text = camLabel // Ej: "SALA", "CAM1", etc.
 
-        tvCam.text = camSlug.replace("_", " ").uppercase()
-
-        inicializarPlayerConPlaylist(playlist!!, nvrId!!)
+        // Cargar playlist respetando el orden
+        cargarPlaylistEnOrden(playlist!!, nvrId!!)
     }
 
-    private fun inicializarPlayerConPlaylist(names: List<String>, nvrId: String) {
-
+    /**
+     * Descarga las URLs de la playlist y las mete al player
+     * en el MISMO orden de la lista 'names'.
+     */
+    private fun cargarPlaylistEnOrden(names: List<String>, nvrId: String) {
         val storageRoot = Firebase.storage.reference
             .child("recordings")
             .child(nvrId)
 
-        player = ExoPlayer.Builder(this).build()
-        playerView.player = player
+        // Lista de MediaItem con la misma longitud que la playlist
+        val mediaItems = MutableList<MediaItem?>(names.size) { null }
+        var pendientes = names.size
 
-        var started = false
-
-        for (fileName in names) {
+        for ((index, fileName) in names.withIndex()) {
             val ref = storageRoot.child(fileName)
 
             ref.downloadUrl
-                .addOnSuccessListener { uri ->
-                    val item = MediaItem.fromUri(uri)
-                    player?.addMediaItem(item)
+                .addOnSuccessListener { uri: Uri ->
+                    mediaItems[index] = MediaItem.fromUri(uri)
+                    pendientes--
 
-                    if (!started) {
-                        started = true
-                        player?.prepare()
-                        player?.playWhenReady = true
+                    if (pendientes == 0) {
+                        // Ya tenemos todas las URLs → armamos el player en orden
+                        inicializarPlayerConMediaItems(mediaItems.filterNotNull())
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Error cargando $fileName", Toast.LENGTH_LONG).show()
+                    pendientes--
+                    Toast.makeText(
+                        this,
+                        "Error cargando $fileName",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (pendientes == 0) {
+                        val listOk = mediaItems.filterNotNull()
+                        if (listOk.isNotEmpty()) {
+                            inicializarPlayerConMediaItems(listOk)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "No se pudo cargar ningún clip.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            finish()
+                        }
+                    }
                 }
+        }
+    }
+
+    private fun inicializarPlayerConMediaItems(items: List<MediaItem>) {
+        if (items.isEmpty()) return
+
+        player = ExoPlayer.Builder(this).build().also { exo ->
+            playerView.player = exo
+
+            // Añadir en orden
+            for (item in items) {
+                exo.addMediaItem(item)
+            }
+
+            exo.prepare()
+            exo.playWhenReady = true
         }
     }
 

@@ -44,5 +44,14 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="16dp" />
+    <TextView
+        android:id="@+id/tvCamDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CAMARA"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="4dp"/>
+
 
 </LinearLayout>
