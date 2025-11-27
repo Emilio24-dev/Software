@@ -186,6 +186,7 @@
     <string name="nvr_video1">Watch video: How do I connect to an NVR?</string>
     <string name="nvr_video2">Watch video: How do I view my recordings?</string>
     <string name="fourth_question">How does AI work?</string>
+    <string name="IA_res">We use a frame capture every 2 seconds, which goes to a service where artificial intelligence is activated to detect the captures. Then, the AI performs the analysis so that you can see the detections in the "Alerts" section. </string>
     <string name="fifth_quest">How do I report a problem?</string>
     <string name="fifth_resp">From the Support section, go to \'Report a problem, describe what\'s happening and press Submit to send your report to the development team, but first choose the email application (gmail).</string>
     <string name="btnVideoReports">Watch video: How to send reports?</string>

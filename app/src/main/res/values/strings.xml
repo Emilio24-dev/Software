@@ -190,6 +190,7 @@
     <string name="nvr_video1">Ver video: ¿Cómo me vinculo a un nvr?</string>
     <string name="nvr_video2">Ver video: ¿Cómo veo mis grabaciones</string>
     <string name="fourth_question">¿Como funciona la IA?</string>
+    <string name="IA_res">Usamos un capturado de frames cada 2 segundos, el cual se van a un servicio donde esta activada la inteligencia artificial para que detecté las capturas, luego esta misma haga el analisis para que usted pueda ver las detecciones en el apartado de "Alertas" </string>
     <string name="fifth_quest">¿Cómo reporto un problema?</string>
     <string name="fifth_resp">Desde la sección de Soporte, entra a \'Reportar un problema\', describe lo que pasa y presiona Enviar para mandar tu reporte al equipo de desarrollo, pero primero elige la aplicacion
         de correo(gmail).</string>

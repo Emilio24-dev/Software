@@ -181,6 +181,14 @@
             android:textSize="18sp"
             android:textColor="#FFFFFF" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/IA_res"
+            android:textSize="14sp"
+            android:textColor="#DDFFFFFF"
+            android:layout_marginTop="4dp" />
+
         <!-- Sección: Reportar un problema -->
         <TextView
             android:layout_width="wrap_content"
