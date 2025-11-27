@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.drawToBitmap
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
@@ -16,6 +19,8 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.rtsp.RtspMediaSource
 import androidx.media3.ui.PlayerView
+import com.example.registro.IA.IaClient
+import com.example.registro.IA.YoloDetection
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -36,6 +41,10 @@ class LiveActivity : AppCompatActivity() {
 
     private val cameras = mutableListOf<Camera>()
     private val players = mutableListOf<ExoPlayer>()
+
+    // Handler para el loop de detecciones
+    private val detectionHandler = Handler(Looper.getMainLooper())
+    private val detectionIntervalMs = 1000L // cada 1 segundo
 
     private val userId get() = FirebaseAuth.getInstance().currentUser?.uid
     private val db get() = FirebaseDatabase.getInstance().getReference("Usuarios")
@@ -119,50 +128,24 @@ class LiveActivity : AppCompatActivity() {
     }
 
     private fun addCameraView(camera: Camera, index: Int) {
-        val card = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(0, 8, 0, 8)
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
+        // Usamos item_cam.xml
+        val card = layoutInflater.inflate(
+            R.layout.item_cam,
+            containerCamaras,
+            false
+        ) as LinearLayout
 
-        // Header: nombre + eliminar
-        val header = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            setPadding(8, 8, 8, 8)
-        }
+        val tvCam = card.findViewById<TextView>(R.id.tvCam)
+        val tvInfo = card.findViewById<TextView>(R.id.tvInfo)
+        val playerView = card.findViewById<PlayerView>(R.id.playerView)
+        val overlay = card.findViewById<YoloDetectionsOverlayView>(R.id.overlayDetections)
 
-        val titleView = TextView(this).apply {
-            text = camera.name
-            setTextColor(0xFFFFFFFF.toInt())
-            textSize = 16f
-            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
-        }
+        tvCam.text = camera.name
+        tvInfo.text = "Conectando..."
 
-        val btnEliminar = TextView(this).apply {
-            text = "Eliminar"
-            setTextColor(0xFFFF5252.toInt())
-            setPadding(8, 0, 8, 0)
-        }
-
-        header.addView(titleView)
-        header.addView(btnEliminar)
-
-        val playerView = PlayerView(this).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dpToPx(200)
-            )
-            keepScreenOn = true
-        }
-
-        card.addView(header)
-        card.addView(playerView)
         containerCamaras.addView(card)
 
-        // Abrir cámara en pantalla completa
+        // Abrir cámara en pantalla completa (tap normal)
         card.setOnClickListener {
             val intent = Intent(this, SingleCameraActivity::class.java).apply {
                 putExtra("cam_name", camera.name)
@@ -171,20 +154,22 @@ class LiveActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Eliminar cámara
-        btnEliminar.setOnClickListener {
+        // Eliminar cámara (long press)
+        card.setOnLongClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Eliminar cámara")
                 .setMessage("¿Eliminar \"${camera.name}\"?")
                 .setPositiveButton("Sí") { _, _ ->
-                    if (index in cameras.indices) {
-                        cameras.removeAt(index)
+                    val currentIndex = cameras.indexOfFirst { it == camera }
+                    if (currentIndex != -1) {
+                        cameras.removeAt(currentIndex)
                         saveCamerasToFirebase()
                         renderAllCameras()
                     }
                 }
                 .setNegativeButton("No", null)
                 .show()
+            true
         }
 
         // Player
@@ -198,12 +183,23 @@ class LiveActivity : AppCompatActivity() {
                         "Error en ${camera.name}: ${error.errorCodeName}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    tvInfo.text = "Error: ${error.errorCodeName}"
+                }
+
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    super.onPlaybackStateChanged(playbackState)
+                    if (playbackState == Player.STATE_READY) {
+                        tvInfo.text = "Transmitiendo..."
+                    }
                 }
             })
         }
 
         players.add(player)
         reproducirUrlEnPlayer(camera.url, player)
+
+        // Iniciar loop de detecciones para esta cámara
+        startDetectionLoopForCamera(playerView, overlay)
     }
 
     private fun reproducirUrlEnPlayer(url: String, player: ExoPlayer) {
@@ -221,6 +217,83 @@ class LiveActivity : AppCompatActivity() {
         player.setMediaSource(mediaSource)
         player.prepare()
         player.playWhenReady = true
+    }
+
+    // ============================================================
+    //   LOOP DE DETECCIONES (envía frames al microservicio YOLO)
+    // ============================================================
+
+    private fun startDetectionLoopForCamera(
+        playerView: PlayerView,
+        overlay: YoloDetectionsOverlayView
+    ) {
+        val runnable = object : Runnable {
+            override fun run() {
+                try {
+                    // 1. Capturar un frame del PlayerView
+                    val bitmap = try {
+                        val surfaceView = playerView.videoSurfaceView
+                        if (surfaceView != null) {
+                            surfaceView.drawToBitmap()
+                        } else {
+                            playerView.drawToBitmap()
+                        }
+                    } catch (e: Exception) {
+                        playerView.drawToBitmap()
+                    }
+
+                    // 2. Mandar al microservicio usando detectFromBitmap
+                    IaClient.detectFromBitmap(bitmap) { ok, detections, imageWidth, imageHeight, _ ->
+                        if (ok) {
+                            val boxes = detectionsToBoxes(detections, imageWidth, imageHeight)
+                            runOnUiThread {
+                                overlay.setDetections(boxes)
+                            }
+                        } else {
+                            runOnUiThread {
+                                overlay.clearDetections()
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                } finally {
+                    // Volver a ejecutar después de detectionIntervalMs
+                    detectionHandler.postDelayed(this, detectionIntervalMs)
+                }
+            }
+        }
+
+        detectionHandler.post(runnable)
+    }
+
+    /**
+     * Convierte las detecciones del microservicio (YoloDetection) a
+     * cajas listas para dibujar en el overlay (YoloBox).
+     */
+    private fun detectionsToBoxes(
+        detections: List<YoloDetection>,
+        imageWidth: Int,
+        imageHeight: Int
+    ): List<YoloBox> {
+        val result = mutableListOf<YoloBox>()
+        if (imageWidth <= 0 || imageHeight <= 0) return result
+
+        for (det in detections) {
+            result.add(
+                YoloBox(
+                    x1 = det.x1,
+                    y1 = det.y1,
+                    x2 = det.x2,
+                    y2 = det.y2,
+                    label = det.className,
+                    confidence = det.confidence,
+                    imageWidth = imageWidth,
+                    imageHeight = imageHeight
+                )
+            )
+        }
+        return result
     }
 
     // ============================================================
@@ -310,6 +383,8 @@ class LiveActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        // Cancelar todos los loops de detección
+        detectionHandler.removeCallbacksAndMessages(null)
         releasePlayers()
     }
 }

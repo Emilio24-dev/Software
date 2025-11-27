@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="12dp"
     android:background="#1E2C3A"
@@ -25,4 +26,28 @@
         android:textColor="#B0BEC5"
         android:textSize="14sp" />
 
+    <!-- Contenedor de video + overlay de detecciones -->
+    <FrameLayout
+        android:id="@+id/containerVideo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp">
+
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:show_buffering="when_playing"
+            app:use_controller="false" />
+
+        <com.example.registro.YoloDetectionsOverlayView
+            android:id="@+id/overlayDetections"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false" />
+
+    </FrameLayout>
+
 </LinearLayout>
+
