@@ -139,7 +139,7 @@
 
     <string name="nvr_cams_back_inicio">&lt; Home</string>
     <string name="nvr_title">Link NVR</string>
-    <string name="nvr_revision">Checking if you have a linked NVR...</string>
+    <string name="nvr_revision">Checking if you have a linked NVR…</string>
     <string name="nvr_unlink">Unlink</string>
     <string name="PC_IP">NVR code</string>
     <string name="nvr_ex">Example: messi-nvr-01</string>
@@ -172,8 +172,19 @@
       keep homes safe by monitoring in real time and recording activity.
       You can also change the language, report issues, and more.</string>
     <string name="sec_question">How do I see my cameras?</string>
-    <string name="sec_resp">1. Go to the Cameras button.\n2. Add a camera, give it any name you like, and enter the camera\'s RTSP address.\n3. Make sure you have an internet connection or are connected to the local network where your cameras are located.</string>
+    <string name="VideoCamaras">Watch video: How do I view or add cameras?</string>
+    <string name="sec_resp">1. Go to the Cameras button.\n2. Add a camera, give it any name you like, and enter the camera\'s RTSP address.\n3. Make sure you have an internet connection or VPN for them to display correctly.</string>
+    <string name="cam_question">What is the camera button for?</string>
+    <string name="cam_resp">The Cameras button takes you to the section where you can view your live cameras and manage the ones you have added.</string>
+    <string name="cam_rstp_quest">How do I add a camera and what is RTSP used for?</string>
+    <string name="cam_rstp_resp">Press Add camera, type the name you want and paste the RTSP link, which is the address that allows the app to connect to your camera.</string>
+    <string name="cam_net_quest">Why do I need an internet connection or VPN?</string>
+    <string name="cam_net_resp">Because your cameras will only be displayed if you are connected to the internet or the VPN that your network uses, since that\'s how the app can access the video in real time.</string>
     <string name="third_question">How do I view my recordings?</string>
+    <string name="nvr_resp">1. Press and hold the recording button to open the NVR pairing screen.\n2. Enter the NVR\'s assigned ID and click Pair.\n3. Go to the NVR\'s camera management section.\n4. Enter the camera RTSP URL and give it a name.\n5. Return to the home page.\n6. Click on "NVR" to begin uploading recordings.</string>
+    <string name="nvr_note">Note: You can only link your NVR to one account on your device.</string>
+    <string name="nvr_video1">Watch video: How do I connect to an NVR?</string>
+    <string name="nvr_video2">Watch video: How do I view my recordings?</string>
     <string name="fourth_question">How does AI work?</string>
     <string name="fifth_quest">How do I report a problem?</string>
     <string name="fifth_resp">From the Support section, go to \'Report a problem, describe what\'s happening and press Submit to send your report to the development team, but first choose the email application (gmail).</string>

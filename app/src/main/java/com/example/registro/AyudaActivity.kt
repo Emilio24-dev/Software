@@ -38,6 +38,15 @@ class AyudaActivity : AppCompatActivity() {
         val btnVideoIdioma = findViewById<Button>(R.id.btnVideoLenguage)
         val urlVideoIdioma = "https://youtube.com/shorts/DpEibSmDkbY?si=t0ZLzuXmmoNTabaL"
 
+        val btnVideoCamaras = findViewById<Button>(R.id.btnVideoCamaras)
+        val urlVideoCamaras = "https://youtube.com/shorts/mz5ZKt_ild0?si=oJzEBPBeL4Qc2YF7"
+
+        val btnVideoNVR1 = findViewById<Button>(R.id.btnVideoNVR1)
+        val urlVideoNVR1 = "https://youtube.com/shorts/0CtIA1WhVoE?si=FhKNlPMSkBrN0v9u"
+
+        val btnVideoNVR2 = findViewById<Button>(R.id.btnVideoNVR2)
+        val urlVideoNVR2 = "https://youtube.com/shorts/zwzLdzAOqSg?si=tfWz0g_-5TpiyV-m"
+
         btnVideoReportes.setOnClickListener {
             abrirVideo(urlVideoReportes)
         }
@@ -52,6 +61,18 @@ class AyudaActivity : AppCompatActivity() {
 
         btnVideoIdioma.setOnClickListener {
             abrirVideo(urlVideoIdioma)
+        }
+
+        btnVideoCamaras.setOnClickListener {
+            abrirVideo(urlVideoCamaras)
+        }
+
+        btnVideoNVR1.setOnClickListener {
+            abrirVideo(urlVideoNVR1)
+        }
+
+        btnVideoNVR2.setOnClickListener {
+            abrirVideo(urlVideoNVR2)
         }
 
 

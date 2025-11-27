@@ -176,8 +176,19 @@
     mantener los hogares a salvo, ya que monitorea en tiempo real y tambien puede guardar grabaciones,
     tambien puedes cambiar de idioma reportar problemas, etc.</string>
     <string name="sec_question">¿Cómo veo mis cámaras?</string>
-    <string name="sec_resp">1. Ve al boton de cámaras.\n2. Agrega una camara, ponle el nombre que quieras y pon el rtsp de la camara.\n3. Asegúrate de tener conexión a internet o a la red local donde están tus cámaras.</string>
+    <string name="VideoCamaras">Ver video: ¿Cómo veo o agrego camaras?</string>
+    <string name="sec_resp">1. Ve al boton de cámaras.\n2. Agrega una camara, ponle el nombre que quieras y pon el rtsp de la camara.\n3. Asegúrate de tener conexión a internet o a la VPN para que se muestren correctamente.</string>
+    <string name="cam_question">¿Para qué sirve el botón de cámaras?</string>
+    <string name="cam_resp">El botón de Cámaras te lleva a la sección donde puedes ver tus cámaras en vivo y administrar las que tengas agregadas.</string>
+    <string name="cam_rstp_quest">¿Cómo agrego una cámara y para qué sirve el RTSP?</string>
+    <string name="cam_rstp_resp">Presiona Agregar cámara, escribe el nombre que quieras y pega el enlace RTSP, que es la dirección que permite que la app se conecte a tu cámara.</string>
+    <string name="cam_net_quest">¿Por qué debo tener conexión a internet o VPN?</string>
+    <string name="cam_net_resp">Porque tus cámaras solo se mostrarán si estás conectado a internet o a la VPN que usa tu red, ya que así la app puede acceder al video en tiempo real.</string>
     <string name="third_question">¿Cómo veo mis grabaciones?</string>
+    <string name="nvr_resp">1. Manten presionado el boton de grabaciones y se te abrira la vinculacion de nvr.\n2. Escribe la id asignada al nvr y dale en vincular.\n3. Ve al apartado de gestionar camaras del nvr.\n4. Escribe la URL rtsp de la camara y asignale un nombre.\n5. Vuelve a la pagina de inicio.\n6. Da un simple clic en nvr y ahi se comenzaran a subir las grabaciones.</string>
+    <string name="nvr_note">Nota: solo podras vincular tu nvr a una sola cuenta de tu dispositivo</string>
+    <string name="nvr_video1">Ver video: ¿Cómo me vinculo a un nvr?</string>
+    <string name="nvr_video2">Ver video: ¿Cómo veo mis grabaciones</string>
     <string name="fourth_question">¿Como funciona la IA?</string>
     <string name="fifth_quest">¿Cómo reporto un problema?</string>
     <string name="fifth_resp">Desde la sección de Soporte, entra a \'Reportar un problema\', describe lo que pasa y presiona Enviar para mandar tu reporte al equipo de desarrollo, pero primero elige la aplicacion
