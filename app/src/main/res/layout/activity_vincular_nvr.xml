@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nvr_cams_back_inicio"
         android:textColor="#31B7FF"
-        android:textSize="18sp"
-        android:fontFamily="serif" />
+        android:textSize="18sp" />
 
     <!-- Título -->
     <TextView
@@ -38,7 +37,7 @@
         android:textColor="#B0BEC5"
         android:textSize="14sp" />
 
-    <!-- IP de la PC que actúa como NVR -->
+    <!-- Código del NVR -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +47,7 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/etPcIp"
+        android:id="@+id/etNvrCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -59,7 +58,7 @@
         android:textColor="#000000"
         android:textColorHint="#607D8B" />
 
-    <!-- Botones Guardar / Cancelar -->
+    <!-- Botones -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/btnSave" />
+            android:text="@string/bSave" />
     </LinearLayout>
 
     <!-- Desvincular NVR actual -->
@@ -87,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Desvincular NVR"
+        android:text="@string/nvr_unlink"
         android:visibility="gone" />
 
     <!-- Ir a gestionar cámaras -->
@@ -98,7 +97,6 @@
         android:text="@string/nvr_gest"
         android:layout_marginTop="16dp" />
 
-    <!-- Mensaje extra sobre el vínculo -->
     <TextView
         android:id="@+id/tvEstadoVinculo"
         android:layout_width="match_parent"

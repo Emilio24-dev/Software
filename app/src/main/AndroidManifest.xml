@@ -32,6 +32,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AyudaActivity"
+            android:exported="false" />
+        <activity
             android:name=".SugerenciasActivity"
             android:exported="false" />
         <activity
@@ -119,8 +122,6 @@
             android:exported="false" />
         <activity android:name=".VincularNvrActivity" />
         <activity android:name=".NvrCamsActivity" />
-
-
     </application>
 
 </manifest>

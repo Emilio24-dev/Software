@@ -22,24 +22,31 @@ import java.util.Locale
 class grabaciones : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {
-        // Aplica el idioma antes de que se cree la Activity
+        // Bloque que traduce las palabras de español a ingles
         val localeUpdatedContext = LocalManager.updateContextLocale(newBase)
         super.attachBaseContext(localeUpdatedContext)
     }
 
+    // ─────────────────────────────
+    // MODELO PARA LA LISTA: día + cámara
+    // ─────────────────────────────
+    data class FechaCam(
+        val fechaDia: String,
+        val camLabel: String
+    )
+
     private lateinit var rvFechas: RecyclerView
     private lateinit var adapter: FechasAdapter
-    private val fechasUnicas = mutableListOf<String>()
+    private val gruposFechaCam = mutableListOf<FechaCam>()
 
-    // Resumen por fecha: "SALA · PORTON"
-    private val resumenPorFecha = mutableMapOf<String, String>()
-
-    // Formatos de fecha/hora
-    private val sdfEntrada = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
+    // Formatos usando la zona horaria del TELÉFONO (por defecto del sistema)
     private val sdfDia = SimpleDateFormat("dd/MM/yyyy", Locale.US)
     private val sdfFull = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US)
 
-    // Carpeta del NVR para este usuario (uid)
+    // 👉 Formato del NOMBRE DE ARCHIVO del NVR: 2025-11-25_21-14-48_cam1.mp4
+    private val sdfFileName = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
+
+    // Carpeta del NVR para este usuario (usamos su uid)
     private var nvrIdParaEsteUsuario: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,18 +62,16 @@ class grabaciones : AppCompatActivity() {
         rvFechas = findViewById(R.id.rvFechas)
         rvFechas.layoutManager = LinearLayoutManager(this)
 
-        adapter = FechasAdapter(
-            fechas = fechasUnicas,
-            resumenPorFecha = resumenPorFecha
-        ) { fecha ->
+        adapter = FechasAdapter(gruposFechaCam) { grupo ->
             val intent = Intent(this, GrabacionesDetalleActivity::class.java)
-            intent.putExtra("fecha", fecha)
+            intent.putExtra("fecha", grupo.fechaDia)
+            intent.putExtra("camLabel", grupo.camLabel)          // 👉 pasamos la cámara
             intent.putExtra("nvrId", nvrIdParaEsteUsuario)
             startActivity(intent)
         }
         rvFechas.adapter = adapter
 
-        // nvrId = uid del usuario logueado
+        // nvrId = uid del usuario actual
         val user = FirebaseAuth.getInstance().currentUser
         nvrIdParaEsteUsuario = user?.uid
     }
@@ -76,6 +81,9 @@ class grabaciones : AppCompatActivity() {
         cargarClipsDesdeFirebaseYActualizarPantalla()
     }
 
+    // ─────────────────────────────
+    // Cargar clips de Storage → ClipRepo
+    // ─────────────────────────────
     private fun cargarClipsDesdeFirebaseYActualizarPantalla() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
@@ -84,7 +92,6 @@ class grabaciones : AppCompatActivity() {
             return
         }
 
-        // Si por alguna razón nvrId es null, usamos el uid
         val nvrId = nvrIdParaEsteUsuario ?: user.uid
         nvrIdParaEsteUsuario = nvrId
 
@@ -101,42 +108,53 @@ class grabaciones : AppCompatActivity() {
                     return@addOnSuccessListener
                 }
 
-                // Ya no pedimos metadata. Leemos TODO del nombre del archivo
-                // Formato esperado: 2025-11-22_00-10-30_sala.mp4
-                for (itemRef in result.items) {
-                    val fileName = itemRef.name
-                    val baseName = fileName.substringBeforeLast(".")      // 2025-11-22_00-10-30_sala
-                    val fechaHoraPart = baseName.substringBeforeLast("_") // 2025-11-22_00-10-30
-                    val camSlug = baseName.substringAfterLast("_")        // sala (o sala_porton, etc.)
+                var pendientes = result.items.size
 
-                    val fechaGrabacion: Date? = try {
-                        sdfEntrada.parse(fechaHoraPart)
-                    } catch (e: Exception) {
-                        null
-                    }
+                result.items.forEach { itemRef ->
+                    itemRef.metadata
+                        .addOnSuccessListener { meta ->
+                            // Nombre de archivo, ej:
+                            // 2025-11-25_21-14-48_cam1.mp4
+                            val baseName = itemRef.name.substringBeforeLast(".")
+                            val datePart = baseName.substringBeforeLast("_") // 2025-11-25_21-14-48
 
-                    if (fechaGrabacion == null) {
-                        // Si el nombre no respeta el formato, saltamos este archivo
-                        continue
-                    }
+                            // Intentamos parsear la fecha desde el NOMBRE del archivo
+                            val fechaDesdeNombre: Date? = try {
+                                sdfFileName.parse(datePart)
+                            } catch (e: Exception) {
+                                null
+                            }
 
-                    val fechaDia = sdfDia.format(fechaGrabacion)          // 22/11/2025
-                    val fechaFull = sdfFull.format(fechaGrabacion)        // 22/11/2025 00:10:30
+                            val fecha: Date = fechaDesdeNombre ?: run {
+                                // Si falla, usamos la fecha de Firebase como respaldo
+                                val millis = meta.updatedTimeMillis
+                                Date(millis)
+                            }
 
-                    val camLabel = camSlug.replace("_", " ").uppercase()  // SALA, PORTON, etc.
+                            val fechaDia = sdfDia.format(fecha)
+                            val fechaFull = sdfFull.format(fecha)
 
-                    val clip = ClipItem(
-                        storageRef = fileName,
-                        fechaDia = fechaDia,
-                        fechaCompleta = fechaFull,
-                        camLabel = camLabel
-                    )
+                            // Deducir cámara desde el nombre del archivo
+                            // 2025-11-25_21-14-48_sala.mp4 -> "SALA"
+                            val camSlug = baseName.substringAfterLast("_")
+                            val camLabel = camSlug.replace("_", " ").uppercase()
 
-                    ClipRepo.agregarClip(clip)
+                            val clip = ClipItem(
+                                storageRef = itemRef.name,
+                                fechaDia = fechaDia,
+                                fechaCompleta = fechaFull,
+                                camLabel = camLabel
+                            )
+
+                            ClipRepo.agregarClip(clip)
+                        }
+                        .addOnCompleteListener {
+                            pendientes -= 1
+                            if (pendientes == 0) {
+                                refrescarListaFechas()
+                            }
+                        }
                 }
-
-                // Una vez procesados todos
-                refrescarListaFechas()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
@@ -148,32 +166,40 @@ class grabaciones : AppCompatActivity() {
             }
     }
 
+    // ─────────────────────────────
+    // Construye la lista: un item por (fecha, cámara)
+    // ─────────────────────────────
     private fun refrescarListaFechas() {
-        val listaFechas = ClipRepo.fechasUnicas()
+        val grupos = ClipRepo.clipsGuardados
+            .groupBy { it.fechaDia }          // por día
+            .flatMap { (fecha, clips) ->
+                clips
+                    .map { it.camLabel }
+                    .distinct()
+                    .map { camLabel -> FechaCam(fechaDia = fecha, camLabel = camLabel) }
+            }
+            // Orden: fecha descendente (por texto dd/MM/yyyy) y luego nombre de cámara
+            .sortedWith(
+                compareByDescending<FechaCam> { it.fechaDia }
+                    .thenBy { it.camLabel }
+            )
 
-        fechasUnicas.clear()
-        resumenPorFecha.clear()
-
-        for (fecha in listaFechas) {
-            fechasUnicas.add(fecha)
-
-            val cams = ClipRepo.camsPorFecha(fecha)
-            val resumen = if (cams.isEmpty()) "" else cams.joinToString(" · ")
-            resumenPorFecha[fecha] = resumen
-        }
-
+        gruposFechaCam.clear()
+        gruposFechaCam.addAll(grupos)
         adapter.notifyDataSetChanged()
     }
 
+    // ─────────────────────────────
+    // ADAPTER
+    // ─────────────────────────────
     class FechasAdapter(
-        private val fechas: List<String>,
-        private val resumenPorFecha: Map<String, String>,
-        private val onClickFecha: (String) -> Unit
+        private val grupos: List<FechaCam>,
+        private val onClickGrupo: (FechaCam) -> Unit
     ) : RecyclerView.Adapter<FechasAdapter.FechaViewHolder>() {
 
         class FechaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val tvFecha: TextView = itemView.findViewById(R.id.tvFecha)
-            val tvCamsResumen: TextView = itemView.findViewById(R.id.tvCamsResumen)
+            val tvCam: TextView = itemView.findViewById(R.id.tvCams)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FechaViewHolder {
@@ -183,12 +209,12 @@ class grabaciones : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: FechaViewHolder, position: Int) {
-            val fecha = fechas[position]
-            holder.tvFecha.text = fecha
-            holder.tvCamsResumen.text = resumenPorFecha[fecha] ?: ""
-            holder.itemView.setOnClickListener { onClickFecha(fecha) }
+            val grupo = grupos[position]
+            holder.tvFecha.text = grupo.fechaDia
+            holder.tvCam.text = grupo.camLabel
+            holder.itemView.setOnClickListener { onClickGrupo(grupo) }
         }
 
-        override fun getItemCount(): Int = fechas.size
+        override fun getItemCount(): Int = grupos.size
     }
 }

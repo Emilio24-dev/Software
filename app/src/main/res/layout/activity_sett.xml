@@ -118,6 +118,22 @@
             android:textAllCaps="false"
             android:letterSpacing="0.02" />
 
+        <!-- Botón Ayuda -->
+        <Button
+            android:id="@+id/btnAyuda"
+            android:text="@string/Btn_Help"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:textColor="@color/settings_button_text"
+            android:fontFamily="serif"
+            android:textAllCaps="false"
+            android:letterSpacing="0.02" />
+
         <!-- Botón Cerrar sesión -->
         <Button
             android:id="@+id/btnCerrarSesion"
